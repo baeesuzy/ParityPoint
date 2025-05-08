@@ -1,2 +1,0 @@
-# ParityPoint
-Gensoc Project
