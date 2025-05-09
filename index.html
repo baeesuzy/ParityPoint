@@ -8,549 +8,10 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: "Poppins", sans-serif;
-      }
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
 
-      body {
-        overflow-x: hidden;
-        background-color: white;
-        color: #333;
-        line-height: 1.6;
-      }
-
-      /* Hero Section with Background */
-      .hero-section {
-        position: relative;
-        width: 100%;
-        height: 85vh;
-        overflow: hidden;
-      }
-
-      /* Background Pattern */
-      .background-pattern {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-        background-image: url("img/herobanner.jpg");
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        filter: brightness(0.9);
-      }
-
-      /* Layout */
-      .container {
-        position: relative;
-        z-index: 1;
-        padding: 0 24px;
-        max-width: 1200px;
-        margin: 0 auto;
-      }
-
-      /* Modern Navigation */
-      .header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 20px 0;
-        position: relative;
-      }
-
-      .logo {
-        display: flex;
-        align-items: center;
-        z-index: 10;
-      }
-
-      .logo img {
-        width: 48px;
-        height: 48px;
-      }
-
-      .logo-text {
-        font-size: 1.8rem;
-        font-weight: 700;
-        margin-left: 10px;
-        color: #333;
-      }
-
-      nav {
-        display: flex;
-        align-items: center;
-      }
-
-      .nav-list {
-        display: flex;
-        list-style: none;
-      }
-
-      .nav-item {
-        margin: 0 16px;
-        position: relative;
-      }
-
-      .nav-link {
-        color: #333;
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 1rem;
-        padding: 8px 0;
-        transition: all 0.3s ease;
-        display: block;
-        position: relative;
-      }
-
-      .nav-link:after {
-        content: "";
-        position: absolute;
-        width: 0;
-        height: 2px;
-        background-color: #ffd700;
-        bottom: 0;
-        left: 0;
-        transition: width 0.3s ease;
-      }
-
-      .nav-link:hover:after,
-      .nav-link.active:after {
-        width: 100%;
-      }
-
-      .nav-link.active {
-        color: #000;
-      }
-
-      .hamburger {
-        display: none;
-        background: none;
-        border: none;
-        cursor: pointer;
-        padding: 5px;
-        z-index: 10;
-      }
-
-      .hamburger span {
-        display: block;
-        width: 30px;
-        height: 3px;
-        margin: 6px 0;
-        background-color: #333;
-        transition: all 0.3s ease;
-      }
-
-      /* Main Content */
-      .main-content {
-        margin-top: 120px;
-        max-width: 600px;
-        padding: 20px;
-
-        backdrop-filter: blur(0.5px);
-      }
-
-      .title {
-        font-size: 4rem;
-        font-weight: 900;
-        line-height: 1.1;
-        margin-bottom: 20px;
-        background: linear-gradient(135deg, #333 0%, #000 100%);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-      }
-
-      .subtitle {
-        font-size: 1.25rem;
-        margin-bottom: 30px;
-        color: #555;
-      }
-
-      .cta-button {
-        display: inline-block;
-        padding: 12px 30px;
-        background: linear-gradient(135deg, #ffd700 0%, #ffc107 100%);
-        color: #333;
-        text-decoration: none;
-        font-weight: 700;
-        border-radius: 50px;
-        box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
-        transition: all 0.3s ease;
-      }
-
-      .cta-button:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
-      }
-
-      /* Team Members Section */
-      .team-section {
-        padding: 100px 0;
-        background-color: #f9f9f9;
-        overflow: hidden;
-      }
-
-      .section-title {
-        text-align: center;
-        font-size: 2.5rem;
-        font-weight: 800;
-        margin-bottom: 60px;
-        position: relative;
-      }
-
-      .section-title:after {
-        content: "";
-        position: absolute;
-        width: 80px;
-        height: 4px;
-        background: linear-gradient(135deg, #ffd700 0%, #ffc107 100%);
-        bottom: -15px;
-        left: 50%;
-        transform: translateX(-50%);
-        border-radius: 2px;
-      }
-
-      .team-carousel-container {
-        overflow: hidden;
-        position: relative;
-        padding: 20px 0;
-      }
-
-      .team-carousel {
-        display: flex;
-        animation: scroll 40s linear infinite;
-        width: calc(280px * 20);
-      }
-
-      .team-member {
-        flex: 0 0 280px;
-        margin: 0 15px;
-        background-color: white;
-        border-radius: 15px;
-        overflow: hidden;
-        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-        transition: all 0.3s ease;
-      }
-
-      .team-member:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-      }
-
-      .member-img {
-        width: 100%;
-        height: 240px;
-        object-fit: cover;
-      }
-
-      .member-info {
-        padding: 20px;
-        text-align: center;
-      }
-
-      .member-name {
-        font-size: 1.2rem;
-        font-weight: 700;
-        margin-bottom: 5px;
-      }
-
-      .member-role {
-        color: #777;
-        font-size: 0.9rem;
-        margin-bottom: 15px;
-      }
-
-      .member-social {
-        display: flex;
-        justify-content: center;
-        gap: 10px;
-      }
-
-      .social-icon {
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        background-color: #f1f1f1;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #555;
-        transition: all 0.3s ease;
-      }
-
-      .social-icon:hover {
-        background-color: #ffd700;
-        color: white;
-      }
-
-      @keyframes scroll {
-        0% {
-          transform: translateX(0);
-        }
-        100% {
-          transform: translateX(
-            calc(-280px * 10)
-          ); /* Move by half the total width */
-        }
-      }
-
-      /* Additional Content Section */
-      .additional-content {
-        padding: 80px 0;
-        background-color: white;
-      }
-
-      /* Data Visualization Section */
-      .data-visualization {
-        padding: 80px 0;
-
-        background-color: #f9f9f9;
-        text-align: center;
-      }
-
-      .data-visualization canvas {
-        max-width: 100%; /* Allow it to scale responsively */
-        margin: 0 auto;
-      }
-
-      /* Testimonials Slider */
-      .testimonials {
-        padding: 80px 0;
-        background-color: white;
-        text-align: center;
-      }
-
-      .testimonials-slider {
-        display: flex;
-        overflow: hidden;
-        position: relative;
-      }
-
-      .testimonial {
-        flex: 0 0 100%;
-        opacity: 0;
-        transition: opacity 0.5s ease;
-      }
-
-      .testimonial.active {
-        opacity: 1;
-      }
-
-      .testimonial-img {
-        width: 80px;
-        height: 80px;
-        border-radius: 50%;
-        margin-bottom: 20px;
-      }
-
-      .testimonial-quote {
-        font-size: 1.2rem;
-        margin-bottom: 10px;
-      }
-
-      .testimonial-name {
-        font-weight: bold;
-      }
-
-      /* Core Resources Grid */
-      .resources {
-        padding: 80px 0;
-        background-color: #f9f9f9;
-      }
-
-      .resources-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 20px;
-      }
-
-      .resource-card {
-        background: white;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        text-align: center;
-      }
-
-      .resource-link {
-        display: inline-block;
-        margin-top: 10px;
-        color: #ffd700;
-        text-decoration: none;
-        font-weight: bold;
-      }
-
-      .resource-link:hover {
-        text-decoration: underline;
-      }
-
-      /* Call to Action Footer */
-      .cta-footer {
-        padding: 40px 0;
-        background-color: #333;
-        color: white;
-        text-align: center;
-      }
-
-      .cta-footer h2 {
-        margin-bottom: 10px;
-      }
-
-      .email-signup {
-        margin: 20px 0;
-      }
-
-      .email-signup input {
-        padding: 10px;
-        width: 300px;
-        max-width: 100%;
-        border: none;
-        border-radius: 5px;
-        margin-right: 10px;
-      }
-
-      .email-signup button {
-        padding: 10px 20px;
-        background-color: #ffd700;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        font-weight: bold;
-      }
-
-      .email-signup button:hover {
-        background-color: #ffc107;
-      }
-
-      .social-links a {
-        margin: 0 10px;
-        color: white;
-        font-size: 1.5rem;
-      }
-
-      .social-links a:hover {
-        color: #ffd700;
-      }
-
-      /* Static Chart */
-      .static-chart {
-        display: flex;
-        justify-content: space-around;
-        align-items: flex-end;
-        height: 300px;
-        margin: 20px auto;
-        max-width: 600px;
-      }
-
-      .static-chart .bar {
-        width: 20%;
-        text-align: center;
-        color: white;
-        font-weight: bold;
-        animation: grow 1.5s ease-in-out;
-      }
-
-      @keyframes grow {
-        from {
-          height: 0;
-        }
-        to {
-          height: 100%;
-        }
-      }
-
-      /* Testimonials Animation */
-      .testimonials-slider {
-        position: relative;
-        overflow: hidden;
-      }
-
-      .testimonial {
-        opacity: 0;
-        transition: opacity 1s ease-in-out;
-        position: absolute;
-        width: 100%;
-      }
-
-      .testimonial.active {
-        opacity: 1;
-        position: relative;
-      }
-
-      /* Responsive Styles */
-      @media (max-width: 900px) {
-        .hamburger {
-          display: block;
-        }
-
-        .nav-list {
-          position: fixed;
-          top: 0;
-          right: -100%;
-          width: 250px;
-          height: 100vh;
-          background-color: white;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          transition: all 0.5s ease;
-          box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-          z-index: 5;
-        }
-
-        .nav-list.active {
-          right: 0;
-        }
-
-        .nav-item {
-          margin: 20px 0;
-        }
-
-        .main-content {
-          margin-top: 80px;
-          max-width: 100%;
-        }
-
-        .title {
-          font-size: 3rem;
-        }
-      }
-
-      @media (max-width: 600px) {
-        .title {
-          font-size: 2.5rem;
-        }
-
-        .team-carousel {
-          will-change: transform;
-          animation: scroll 30s linear infinite;
-        }
-
-        .team-member {
-          flex: 0 0 260px;
-          margin: 0 10px;
-        }
-
-        .header {
-          padding: 15px 0;
-        }
-
-        .logo img {
-          width: 100px;
-          height: 100px;
-        }
-
-        .logo-text {
-          font-size: 1.5rem;
-        }
-      }
-    </style>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <!-- Hero Section with Background -->
@@ -600,6 +61,533 @@
         </div>
       </div>
     </div>
+
+    <!-- Workplace Disparities Section -->
+    <section class="py-12 px-4 md:px-8">
+      <div class="max-w-6xl mx-auto">
+        <div class="bg-white shadow-lg rounded-lg overflow-hidden p-6 mb-8">
+          <h2
+            class="text-2xl md:text-3xl font-bold text-gray-800 mb-6 text-center"
+          >
+            Workplace Disparities
+          </h2>
+
+          <div class="relative h-96 md:h-[28rem]">
+            <canvas id="workplaceDisparitiesChart"></canvas>
+          </div>
+
+          <div
+            class="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"
+          >
+            <div
+              class="p-4 bg-amber-50 border-l-4 border-amber-500 rounded shadow-sm"
+            >
+              <h3 class="font-bold text-gray-700">Gender</h3>
+              <p class="text-2xl font-bold text-amber-600">
+                70<span class="text-sm">%</span>
+              </p>
+            </div>
+            <div
+              class="p-4 bg-orange-50 border-l-4 border-orange-500 rounded shadow-sm"
+            >
+              <h3 class="font-bold text-gray-700">Race</h3>
+              <p class="text-2xl font-bold text-orange-600">
+                85<span class="text-sm">%</span>
+              </p>
+            </div>
+            <div
+              class="p-4 bg-yellow-50 border-l-4 border-yellow-500 rounded shadow-sm"
+            >
+              <h3 class="font-bold text-gray-700">Disability</h3>
+              <p class="text-2xl font-bold text-yellow-600">
+                60<span class="text-sm">%</span>
+              </p>
+            </div>
+            <div
+              class="p-4 bg-red-50 border-l-4 border-red-500 rounded shadow-sm"
+            >
+              <h3 class="font-bold text-gray-700">Age</h3>
+              <p class="text-2xl font-bold text-red-600">
+                50<span class="text-sm">%</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white shadow-lg rounded-lg overflow-hidden p-6">
+          <h3 class="text-xl font-bold text-gray-800 mb-4">About This Data</h3>
+          <p class="text-gray-600">
+            This visualization illustrates various workplace disparity indices
+            across different categories. Higher percentages indicate greater
+            levels of disparity in the respective categories.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      // Initialize chart with improved styling
+      const ctx = document
+        .getElementById("workplaceDisparitiesChart")
+        .getContext("2d");
+
+      const gradientGender = ctx.createLinearGradient(0, 0, 0, 400);
+      gradientGender.addColorStop(0, "rgba(245, 158, 11, 0.8)");
+      gradientGender.addColorStop(1, "rgba(245, 158, 11, 0.3)");
+
+      const gradientRace = ctx.createLinearGradient(0, 0, 0, 400);
+      gradientRace.addColorStop(0, "rgba(249, 115, 22, 0.8)");
+      gradientRace.addColorStop(1, "rgba(249, 115, 22, 0.3)");
+
+      const gradientDisability = ctx.createLinearGradient(0, 0, 0, 400);
+      gradientDisability.addColorStop(0, "rgba(234, 179, 8, 0.8)");
+      gradientDisability.addColorStop(1, "rgba(234, 179, 8, 0.3)");
+
+      const gradientAge = ctx.createLinearGradient(0, 0, 0, 400);
+      gradientAge.addColorStop(0, "rgba(220, 38, 38, 0.8)");
+      gradientAge.addColorStop(1, "rgba(220, 38, 38, 0.3)");
+
+      new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: ["Gender", "Race", "Disability", "Age"],
+          datasets: [
+            {
+              label: "Disparity Index",
+              data: [70, 85, 60, 50],
+              backgroundColor: [
+                gradientGender,
+                gradientRace,
+                gradientDisability,
+                gradientAge,
+              ],
+              borderColor: [
+                "rgba(245, 158, 11, 1)",
+                "rgba(249, 115, 22, 1)",
+                "rgba(234, 179, 8, 1)",
+                "rgba(220, 38, 38, 1)",
+              ],
+              borderWidth: 2,
+              borderRadius: 6,
+              hoverBorderWidth: 3,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              display: false,
+            },
+            tooltip: {
+              backgroundColor: "rgba(17, 24, 39, 0.9)",
+              titleColor: "#fff",
+              bodyColor: "#fff",
+              padding: 12,
+              cornerRadius: 8,
+              displayColors: false,
+              callbacks: {
+                label: function (context) {
+                  return `Disparity Index: ${context.raw}%`;
+                },
+              },
+            },
+          },
+          scales: {
+            x: {
+              grid: {
+                display: false,
+              },
+              ticks: {
+                font: {
+                  size: 13,
+                  weight: "500",
+                },
+              },
+            },
+            y: {
+              beginAtZero: true,
+              max: 100,
+              title: {
+                display: true,
+                text: "Disparity Index (%)",
+                font: {
+                  size: 14,
+                  weight: "600",
+                },
+                color: "#4B5563",
+              },
+              grid: {
+                borderDash: [2, 2],
+              },
+              ticks: {
+                callback: function (value) {
+                  return value + "%";
+                },
+              },
+            },
+          },
+          animation: {
+            duration: 2000,
+            easing: "easeOutQuart",
+          },
+        },
+      });
+    </script>
+
+    <section class="bg-gray-50 py-20 px-6">
+      <div class="max-w-5xl mx-auto text-center">
+        <h2 class="text-4xl font-bold text-gray-800 mb-14">
+          💬 What Advocates Say
+        </h2>
+
+        <div class="grid gap-10 md:grid-cols-2">
+          <!-- Testimonial 1 -->
+          <div
+            class="bg-white p-8 rounded-3xl shadow-lg hover:shadow-xl transition duration-300 relative"
+          >
+            <svg
+              class="w-10 h-10 text-indigo-200 absolute -top-5 left-5"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M7.17 6.25a5 5 0 0 1 5 5v6.58a2.17 2.17 0 0 1-2.17 2.17H4.58A2.17 2.17 0 0 1 2.41 17.83V11.25a5 5 0 0 1 5-5zM18.41 6.25a5 5 0 0 1 5 5v6.58a2.17 2.17 0 0 1-2.17 2.17h-5.42a2.17 2.17 0 0 1-2.17-2.17V11.25a5 5 0 0 1 5-5z"
+              />
+            </svg>
+            <p class="text-gray-700 text-lg leading-relaxed italic">
+              "ParityPoint has been instrumental in driving workplace equity.
+              The change is tangible, and the movement is growing stronger every
+              day."
+            </p>
+            <h3 class="mt-6 text-indigo-600 font-semibold text-sm">
+              — Edmund, Labor Advocate
+            </h3>
+          </div>
+
+          <!-- Testimonial 2 -->
+          <div
+            class="bg-white p-8 rounded-3xl shadow-lg hover:shadow-xl transition duration-300 relative"
+          >
+            <svg
+              class="w-10 h-10 text-indigo-200 absolute -top-5 left-5"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M7.17 6.25a5 5 0 0 1 5 5v6.58a2.17 2.17 0 0 1-2.17 2.17H4.58A2.17 2.17 0 0 1 2.41 17.83V11.25a5 5 0 0 1 5-5zM18.41 6.25a5 5 0 0 1 5 5v6.58a2.17 2.17 0 0 1-2.17 2.17h-5.42a2.17 2.17 0 0 1-2.17-2.17V11.25a5 5 0 0 1 5-5z"
+              />
+            </svg>
+            <p class="text-gray-700 text-lg leading-relaxed italic">
+              "A powerful platform for reclaiming equity and inclusion. It
+              creates a space where all voices can be heard and empowered."
+            </p>
+            <h3 class="mt-6 text-indigo-600 font-semibold text-sm">
+              — Carmila, Community Organizer
+            </h3>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-16 px-4 md:px-8 bg-white">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold text-indigo-900 mb-2">
+            Tools for Change
+          </h2>
+          <div class="w-24 h-1 bg-indigo-500 mx-auto rounded-full mb-6"></div>
+          <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+            Resources and tools designed to help create a more equitable and
+            inclusive workplace environment.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Resource Card 1 -->
+          <div
+            class="group bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden"
+          >
+            <div class="bg-indigo-600 h-3 w-full"></div>
+            <div class="p-8">
+              <div
+                class="w-16 h-16 rounded-full bg-indigo-100 flex items-center justify-center mb-6 group-hover:bg-indigo-200 transition-all duration-300"
+              >
+                <i class="fas fa-balance-scale text-2xl text-indigo-600"></i>
+              </div>
+              <h3 class="text-xl font-bold text-gray-800 mb-3">
+                Know Your Rights
+              </h3>
+              <p class="text-gray-600 mb-6 h-16">
+                Understand your legal protections and workplace rights in
+                various situations.
+              </p>
+              <a
+                href="#"
+                class="inline-flex items-center font-semibold text-indigo-600 hover:text-indigo-800 transition-colors duration-200"
+              >
+                Explore Resources
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5 ml-1"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M14 5l7 7m0 0l-7 7m7-7H3"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Resource Card 2 -->
+          <div
+            class="group bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden"
+          >
+            <div class="bg-purple-600 h-3 w-full"></div>
+            <div class="p-8">
+              <div
+                class="w-16 h-16 rounded-full bg-purple-100 flex items-center justify-center mb-6 group-hover:bg-purple-200 transition-all duration-300"
+              >
+                <i class="fas fa-hands-helping text-2xl text-purple-600"></i>
+              </div>
+              <h3 class="text-xl font-bold text-gray-800 mb-3">
+                Allyship Toolkit
+              </h3>
+              <p class="text-gray-600 mb-6 h-16">
+                Practical resources for becoming an effective and supportive
+                workplace ally.
+              </p>
+              <a
+                href="#"
+                class="inline-flex items-center font-semibold text-purple-600 hover:text-purple-800 transition-colors duration-200"
+              >
+                Explore Resources
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5 ml-1"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M14 5l7 7m0 0l-7 7m7-7H3"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Resource Card 3 -->
+          <div
+            class="group bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden"
+          >
+            <div class="bg-red-600 h-3 w-full"></div>
+            <div class="p-8">
+              <div
+                class="w-16 h-16 rounded-full bg-red-100 flex items-center justify-center mb-6 group-hover:bg-red-200 transition-all duration-300"
+              >
+                <i
+                  class="fas fa-exclamation-triangle text-2xl text-red-600"
+                ></i>
+              </div>
+              <h3 class="text-xl font-bold text-gray-800 mb-3">
+                Report Discrimination
+              </h3>
+              <p class="text-gray-600 mb-6 h-16">
+                Access our safe and confidential reporting system with support
+                resources.
+              </p>
+              <a
+                href="#"
+                class="inline-flex items-center font-semibold text-red-600 hover:text-red-800 transition-colors duration-200"
+              >
+                Access System
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5 ml-1"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M14 5l7 7m0 0l-7 7m7-7H3"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Additional CTA -->
+        <div class="mt-12 text-center">
+          <a
+            href="#"
+            class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 shadow-md transition-all duration-200"
+          >
+            View All Resources
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5 ml-2"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Equity Impact Section -->
+    <section class="bg-gradient-to-br from-white to-gray-100 py-16">
+      <div class="max-w-7xl mx-auto px-6 text-center">
+        <h2 class="text-4xl font-extrabold text-gray-800 mb-12">
+          🇵🇭 Equity Impact in the Philippines
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+          <!-- Card with overlay -->
+          <div
+            class="relative bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition duration-300 group"
+          >
+            <div class="p-6">
+              <p class="text-5xl font-bold text-indigo-600 mb-2">7,000+</p>
+              <p class="text-gray-700 text-sm">Workers Reached</p>
+            </div>
+            <!-- Overlay -->
+            <div
+              class="absolute inset-0 bg-black bg-opacity-60 text-white flex items-center justify-center text-xs px-4 opacity-0 group-hover:opacity-100 transition duration-300"
+            >
+              <a
+                href="https://www.dole.gov.ph"
+                target="_blank"
+                class="underline hover:text-indigo-300"
+              >
+                Source: Department of Labor and Employment (DOLE)
+              </a>
+            </div>
+          </div>
+
+          <div
+            class="relative bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition duration-300 group"
+          >
+            <div class="p-6">
+              <p class="text-5xl font-bold text-indigo-600 mb-2">150+</p>
+              <p class="text-gray-700 text-sm">Partner Organizations</p>
+            </div>
+            <div
+              class="absolute inset-0 bg-black bg-opacity-60 text-white flex items-center justify-center text-xs px-4 opacity-0 group-hover:opacity-100 transition duration-300"
+            >
+              <a
+                href="https://www.sec.gov.ph"
+                target="_blank"
+                class="underline hover:text-indigo-300"
+              >
+                Source: SEC NGO Database
+              </a>
+            </div>
+          </div>
+
+          <div
+            class="relative bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition duration-300 group"
+          >
+            <div class="p-6">
+              <p class="text-5xl font-bold text-indigo-600 mb-2">45%</p>
+              <p class="text-gray-700 text-sm">Gender Pay Gap (Sample)</p>
+            </div>
+            <div
+              class="absolute inset-0 bg-black bg-opacity-60 text-white flex items-center justify-center text-xs px-4 opacity-0 group-hover:opacity-100 transition duration-300"
+            >
+              <a
+                href="https://psa.gov.ph"
+                target="_blank"
+                class="underline hover:text-indigo-300"
+              >
+                Source: Philippine Statistics Authority (PSA)
+              </a>
+            </div>
+          </div>
+
+          <div
+            class="relative bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition duration-300 group"
+          >
+            <div class="p-6">
+              <p class="text-5xl font-bold text-indigo-600 mb-2">60%</p>
+              <p class="text-gray-700 text-sm">Leadership Held by Men</p>
+            </div>
+            <div
+              class="absolute inset-0 bg-black bg-opacity-60 text-white flex items-center justify-center text-xs px-4 opacity-0 group-hover:opacity-100 transition duration-300"
+            >
+              <a
+                href="https://psa.gov.ph/gender-statistics"
+                target="_blank"
+                class="underline hover:text-indigo-300"
+              >
+                Source: Gender Statistics on Labor and Employment
+              </a>
+            </div>
+          </div>
+
+          <div
+            class="relative bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition duration-300 group"
+          >
+            <div class="p-6">
+              <p class="text-5xl font-bold text-indigo-600 mb-2">40%</p>
+              <p class="text-gray-700 text-sm">Leadership Held by Women</p>
+            </div>
+            <div
+              class="absolute inset-0 bg-black bg-opacity-60 text-white flex items-center justify-center text-xs px-4 opacity-0 group-hover:opacity-100 transition duration-300"
+            >
+              <a
+                href="https://psa.gov.ph/gender-statistics"
+                target="_blank"
+                class="underline hover:text-indigo-300"
+              >
+                Source: Gender Statistics on Labor and Employment
+              </a>
+            </div>
+          </div>
+
+          <div
+            class="relative bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition duration-300 group"
+          >
+            <div class="p-6">
+              <p class="text-5xl font-bold text-indigo-600 mb-2">100+</p>
+              <p class="text-gray-700 text-sm">Equity Seminars Nationwide</p>
+            </div>
+            <div
+              class="absolute inset-0 bg-black bg-opacity-60 text-white flex items-center justify-center text-xs px-4 opacity-0 group-hover:opacity-100 transition duration-300"
+            >
+              <a
+                href="https://chr.gov.ph"
+                target="_blank"
+                class="underline hover:text-indigo-300"
+              >
+                Source: Commission on Human Rights (CHR)
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- Team Members Section with Carousel -->
     <section class="team-section" id="team">
@@ -701,7 +689,7 @@
               />
               <div class="member-info">
                 <h3 class="member-name">Zyrou Juntillia</h3>
-                <p class="member-role">Assistant Ui/Ux Developer</p>
+                <p class="member-role">Content Writer/ SEO Specialist</p>
                 <div class="member-social">
                   <a href="#" class="social-icon"
                     ><i class="fab fa-linkedin-in"></i
@@ -720,7 +708,7 @@
               <img src="img/harold.jpg" alt="harold" class="member-img" />
               <div class="member-info">
                 <h3 class="member-name">Harold Maturan</h3>
-                <p class="member-role">Assistant Dev</p>
+                <p class="member-role">Assistant Developer</p>
                 <div class="member-social">
                   <a href="#" class="social-icon"
                     ><i class="fab fa-linkedin-in"></i
@@ -739,7 +727,7 @@
               <img src="img/raffy.jpg" alt="andre" class="member-img" />
               <div class="member-info">
                 <h3 class="member-name">Jun Andre Rafinian</h3>
-                <p class="member-role">Researcher</p>
+                <p class="member-role">QA Tester</p>
                 <div class="member-social">
                   <a href="#" class="social-icon"
                     ><i class="fab fa-linkedin-in"></i
@@ -822,138 +810,6 @@
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Workplace Disparities Section -->
-    <section class="data-visualization">
-      <div class="container">
-        <h2 class="section-title">Workplace Disparities</h2>
-        <canvas
-          id="workplaceDisparitiesChart"
-          width="900"
-          height="500"
-        ></canvas>
-        <!-- Increased width and height -->
-      </div>
-    </section>
-
-    <!-- Include Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-      // Improved Chart.js Bar Chart
-      const ctx = document
-        .getElementById("workplaceDisparitiesChart")
-        .getContext("2d");
-      new Chart(ctx, {
-        type: "bar",
-        data: {
-          labels: ["Gender", "Race", "Disability", "Age"],
-          datasets: [
-            {
-              label: "Disparity Index",
-              data: [70, 85, 60, 50],
-              backgroundColor: [
-                "rgba(255, 215, 0, 0.8)", // Gender
-                "rgba(255, 193, 7, 0.8)", // Race
-                "rgba(255, 152, 0, 0.8)", // Disability
-                "rgba(255, 87, 34, 0.8)", // Age
-              ],
-              borderColor: [
-                "rgba(255, 215, 0, 1)",
-                "rgba(255, 193, 7, 1)",
-                "rgba(255, 152, 0, 1)",
-                "rgba(255, 87, 34, 1)",
-              ],
-              borderWidth: 1,
-            },
-          ],
-        },
-        options: {
-          responsive: true,
-          plugins: {
-            legend: {
-              display: true,
-              position: "top",
-            },
-            tooltip: {
-              callbacks: {
-                label: function (context) {
-                  return `${context.label}: ${context.raw}%`;
-                },
-              },
-            },
-          },
-          scales: {
-            x: {
-              title: {
-                display: true,
-                text: "Categories",
-                font: {
-                  size: 14,
-                  weight: "bold",
-                },
-              },
-            },
-            y: {
-              beginAtZero: true,
-              title: {
-                display: true,
-                text: "Disparity Index (%)",
-                font: {
-                  size: 14,
-                  weight: "bold",
-                },
-              },
-            },
-          },
-        },
-      });
-    </script>
-
-    <!-- Testimonials Section -->
-    <section class="testimonials">
-      <div class="container">
-        <h2 class="section-title">What Advocates Say</h2>
-        <div class="testimonials-slider">
-          <div class="testimonial active">
-            <p class="testimonial-quote">
-              "ParityPoint has been instrumental in driving workplace equity."
-            </p>
-            <h3 class="testimonial-name">Edmund</h3>
-          </div>
-          <div class="testimonial">
-            <p class="testimonial-quote">
-              "A powerful platform for reclaiming equity and inclusion."
-            </p>
-            <h3 class="testimonial-name">Carmila</h3>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="resources">
-      <div class="container">
-        <h2 class="section-title">Tools for changes</h2>
-        <div class="resources-grid">
-          <div class="resource-card">
-            <h3><i class="fas fa-balance-scale"></i> Know Your Rights</h3>
-            <p>Understand your legal protections and workplace rights.</p>
-            <a href="#" class="resource-link">Explore</a>
-          </div>
-          <div class="resource-card">
-            <h3><i class="fas fa-hands-helping"></i> Allyship Toolkit</h3>
-            <p>Resources for becoming an effective workplace ally.</p>
-            <a href="#" class="resource-link">Explore</a>
-          </div>
-          <div class="resource-card">
-            <h3>
-              <i class="fas fa-exclamation-triangle"></i> Report Discrimination
-            </h3>
-            <p>Safe and confidential reporting system.</p>
-            <a href="#" class="resource-link">Explore</a>
           </div>
         </div>
       </div>
