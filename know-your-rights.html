@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Know Your Rights - ParityPoint</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <!-- AOS Library for scroll animations -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <style>
+      /* Fix for background pattern overlay */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, sans-serif;
+      }
+      .hero {
+        position: relative;
+        min-height: 85vh;
+        background: linear-gradient(135deg, #4f46e5 0%, #7e22ce 100%);
+        overflow: hidden;
+      }
+      .particles {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        opacity: 0.2;
+      }
+      .particle {
+        position: absolute;
+        background: white;
+        border-radius: 50%;
+        opacity: 0.6;
+        animation: float 12s infinite ease-in-out;
+      }
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0) translateX(0);
+        }
+        25% {
+          transform: translateY(-20px) translateX(10px);
+        }
+        50% {
+          transform: translateY(-35px) translateX(-15px);
+        }
+        75% {
+          transform: translateY(-15px) translateX(25px);
+        }
+      }
+      .hero-content {
+        position: relative;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 6rem 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        height: 100%;
+        z-index: 10;
+      }
+      .badge {
+        background-color: rgba(255, 255, 255, 0.15);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 9999px;
+        font-weight: 500;
+        font-size: 0.875rem;
+        margin-bottom: 2rem;
+        backdrop-filter: blur(4px);
+        animation: fadeInUp 0.6s ease-out;
+      }
+      .title {
+        font-size: 3.5rem;
+        font-weight: 800;
+        line-height: 1.1;
+        color: white;
+        margin-bottom: 1.5rem;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        animation: fadeInUp 0.8s ease-out;
+      }
+      .subtitle {
+        font-size: 1.25rem;
+        line-height: 1.6;
+        color: rgba(255, 255, 255, 0.9);
+        max-width: 700px;
+        margin-bottom: 2.5rem;
+        animation: fadeInUp 1s ease-out;
+      }
+      .cta-container {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+        animation: fadeInUp 1.2s ease-out;
+      }
+      .cta-primary {
+        background-color: white;
+        color: #4f46e5;
+        font-weight: 600;
+        padding: 0.875rem 2rem;
+        border-radius: 0.5rem;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+      }
+      .cta-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 7px 14px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
+      }
+      .cta-secondary {
+        background-color: rgba(255, 255, 255, 0.1);
+        color: white;
+        font-weight: 500;
+        padding: 0.875rem 2rem;
+        border-radius: 0.5rem;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        backdrop-filter: blur(4px);
+      }
+      .cta-secondary:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+      .wave {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 120px;
+        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118.11,141.89,111.27,221.93,94.19Z' fill='%23ffffff'%3E%3C/path%3E%3C/svg%3E")
+          no-repeat;
+        background-size: cover;
+      }
+      .icon {
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 0.5rem;
+      }
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @media (max-width: 768px) {
+        .title {
+          font-size: 2.5rem;
+        }
+        .subtitle {
+          font-size: 1.125rem;
+        }
+        .cta-container {
+          flex-direction: column;
+          width: 100%;
+          max-width: 300px;
+          gap: 0.75rem;
+        }
+        .cta-primary,
+        .cta-secondary {
+          width: 100%;
+          text-align: center;
+        }
+      }
+
+      /* Header styles */
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.5rem 0;
+      }
+
+      .logo-text {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: #4f46e5;
+      }
+
+      /* Navigation styles */
+      .nav-list {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+      }
+
+      .nav-link {
+        color: #374151;
+        font-weight: 500;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      .nav-link:hover,
+      .nav-link.active {
+        color: #4f46e5;
+      }
+
+      /* Hamburger menu for mobile */
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+        background: none;
+        border: none;
+      }
+
+      .hamburger span {
+        width: 25px;
+        height: 3px;
+        background-color: #4f46e5;
+        margin: 2px 0;
+        transition: 0.3s;
+      }
+
+      /* Mobile responsiveness */
+      @media (max-width: 768px) {
+        .hamburger {
+          display: flex;
+          z-index: 101; /* Above nav-list */
+        }
+
+        .nav-list {
+          position: fixed;
+          top: 0;
+          left: 0; /* Cover from left */
+          right: 0; /* Cover to right */
+          bottom: 0; /* Cover to bottom */
+          flex-direction: column;
+          width: 100vw; /* Full width */
+          height: 100vh; /* Full height */
+          background: rgba(255, 255, 255, 0.97); /* Opaque background */
+          padding: 5rem 2rem;
+          z-index: 100; /* Above hero and everything else */
+          transition: transform 0.3s ease;
+          transform: translateX(100%);
+          box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+          pointer-events: none;
+          display: flex;
+        }
+
+        .nav-list.active {
+          transform: translateX(0);
+          pointer-events: auto;
+        }
+      }
+
+      /* Container styles */
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+      }
+    </style>
+  </head>
+  <nav>
+    <!-- Navigation -->
+    <div class="hero-section">
+      <!-- Background Pattern -->
+      <div class="background-pattern"></div>
+
+      <div class="container">
+        <!-- Header and Navigation -->
+        <div class="header">
+          <!-- Logo -->
+          <div class="logo">
+            <span class="logo-text">ParityPoint</span>
+          </div>
+
+          <!-- Hamburger Menu for Mobile -->
+          <button class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+
+          <!-- Navigation -->
+          <nav>
+            <ul class="nav-list" id="nav-list">
+              <li class="nav-item">
+                <a href="index.html" class="nav-link active">HOME</a>
+              </li>
+              <li class="nav-item"><a href="#" class="nav-link">TOPICS</a></li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">REFERENCES</a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">ABOUT US</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <body class="bg-gray-50">
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="particles" id="particles"></div>
+      <div class="hero-content">
+        <span class="badge">WORKPLACE EQUALITY</span>
+        <h1 class="title">
+          Know Your Rights<br /><span style="color: #a5b4fc"
+            >Empower Your Career</span
+          >
+        </h1>
+        <p class="subtitle">
+          Understanding your workplace rights is the foundation of creating a
+          fair and equitable environment. Together, we can build workplaces
+          where everyone thrives.
+        </p>
+        <div class="cta-container">
+          <a href="#rights" class="cta-primary">
+            <svg
+              class="icon"
+              width="16"
+              height="16"
+              viewBox="0 0 20 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M9 5L15 10L9 15"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            Explore Your Rights
+          </a>
+          <a href="#rights" class="cta-secondary">
+            <svg
+              class="icon"
+              width="16"
+              height="16"
+              viewBox="0 0 20 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M10 4V12M10 12L7 9M10 12L13 9M15 16H5C4.46957 16 3.96086 15.7893 3.58579 15.4142C3.21071 15.0391 3 14.5304 3 14V6C3 5.46957 3.21071 4.96086 3.58579 4.58579C3.96086 4.21071 4.46957 4 5 4H15C15.5304 4 16.0391 4.21071 16.4142 4.58579C16.7893 4.96086 17 5.46957 17 6V14C17 14.5304 16.7893 15.0391 16.4142 15.4142C16.0391 15.7893 15.5304 16 15 16Z"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            Join Free Workshop
+          </a>
+        </div>
+      </div>
+      <div class="wave"></div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <!-- Quick Navigation -->
+      <div
+        class="bg-white rounded-xl shadow-md p-6 mb-12"
+        data-aos="fade-up"
+        id="rights"
+      >
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">Quick Navigation</h2>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <a
+            href="#anti-discrimination"
+            class="flex items-center p-4 bg-indigo-50 rounded-lg hover:bg-indigo-100 transition-colors"
+          >
+            <i class="fas fa-ban text-indigo-600 mr-3"></i>
+            <span>Anti-Discrimination</span>
+          </a>
+          <a
+            href="#equal-pay"
+            class="flex items-center p-4 bg-purple-50 rounded-lg hover:bg-purple-100 transition-colors"
+          >
+            <i class="fas fa-dollar-sign text-purple-600 mr-3"></i>
+            <span>Equal Pay</span>
+          </a>
+          <a
+            href="#safety"
+            class="flex items-center p-4 bg-green-50 rounded-lg hover:bg-green-100 transition-colors"
+          >
+            <i class="fas fa-shield-alt text-green-600 mr-3"></i>
+            <span>Workplace Safety</span>
+          </a>
+          <a
+            href="#harassment"
+            class="flex items-center p-4 bg-red-50 rounded-lg hover:bg-red-100 transition-colors"
+          >
+            <i class="fas fa-exclamation-triangle text-red-600 mr-3"></i>
+            <span>Harassment</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Anti-Discrimination Section -->
+      <section id="anti-discrimination" class="mb-16" data-aos="fade-up">
+        <div class="bg-white rounded-xl shadow-md overflow-hidden">
+          <div class="p-8">
+            <div class="flex items-center mb-6">
+              <div
+                class="w-12 h-12 rounded-full bg-indigo-100 flex items-center justify-center mr-4"
+              >
+                <i class="fas fa-ban text-2xl text-indigo-600"></i>
+              </div>
+              <h2 class="text-3xl font-bold text-gray-800">
+                Anti-Discrimination Laws
+              </h2>
+            </div>
+            <div class="prose max-w-none">
+              <p class="text-gray-600 mb-6">
+                Understanding your rights under anti-discrimination laws is
+                crucial for maintaining a fair workplace environment.
+              </p>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-gray-50 p-6 rounded-lg">
+                  <h3 class="text-xl font-semibold mb-4">
+                    Protected Characteristics
+                  </h3>
+                  <ul class="space-y-3">
+                    <li class="flex items-center">
+                      <i class="fas fa-check text-green-500 mr-2"></i>
+                      <span>Race and Ethnicity</span>
+                    </li>
+                    <li class="flex items-center">
+                      <i class="fas fa-check text-green-500 mr-2"></i>
+                      <span>Gender and Sexual Orientation</span>
+                    </li>
+                    <li class="flex items-center">
+                      <i class="fas fa-check text-green-500 mr-2"></i>
+                      <span>Age</span>
+                    </li>
+                    <li class="flex items-center">
+                      <i class="fas fa-check text-green-500 mr-2"></i>
+                      <span>Disability Status</span>
+                    </li>
+                  </ul>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg">
+                  <h3 class="text-xl font-semibold mb-4">Your Rights</h3>
+                  <ul class="space-y-3">
+                    <li class="flex items-center">
+                      <i class="fas fa-check text-green-500 mr-2"></i>
+                      <span>Equal Employment Opportunities</span>
+                    </li>
+                    <li class="flex items-center">
+                      <i class="fas fa-check text-green-500 mr-2"></i>
+                      <span>Fair Treatment in Hiring</span>
+                    </li>
+                    <li class="flex items-center">
+                      <i class="fas fa-check text-green-500 mr-2"></i>
+                      <span>Reasonable Accommodations</span>
+                    </li>
+                    <li class="flex items-center">
+                      <i class="fas fa-check text-green-500 mr-2"></i>
+                      <span>Protection from Retaliation</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Equal Pay Section -->
+      <section id="equal-pay" class="mb-16" data-aos="fade-up">
+        <div class="bg-white rounded-xl shadow-md overflow-hidden">
+          <div class="p-8">
+            <div class="flex items-center mb-6">
+              <div
+                class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center mr-4"
+              >
+                <i class="fas fa-dollar-sign text-2xl text-purple-600"></i>
+              </div>
+              <h2 class="text-3xl font-bold text-gray-800">Equal Pay Rights</h2>
+            </div>
+            <div class="prose max-w-none">
+              <p class="text-gray-600 mb-6">
+                The right to equal pay for equal work is fundamental to
+                workplace equity.
+              </p>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-gray-50 p-6 rounded-lg">
+                  <h3 class="text-xl font-semibold mb-4">
+                    What You Should Know
+                  </h3>
+                  <ul class="space-y-3">
+                    <li class="flex items-center">
+                      <i class="fas fa-check text-green-500 mr-2"></i>
+                      <span>Equal Pay for Equal Work</span>
+                    </li>
+                    <li class="flex items-center">
+                      <i class="fas fa-check text-green-500 mr-2"></i>
+                      <span>Transparent Pay Policies</span>
+                    </li>
+                    <li class="flex items-center">
+                      <i class="fas fa-check text-green-500 mr-2"></i>
+                      <span>Pay Equity Audits</span>
+                    </li>
+                    <li class="flex items-center">
+                      <i class="fas fa-check text-green-500 mr-2"></i>
+                      <span>Salary Negotiation Rights</span>
+                    </li>
+                  </ul>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg">
+                  <h3 class="text-xl font-semibold mb-4">Taking Action</h3>
+                  <ul class="space-y-3">
+                    <li class="flex items-center">
+                      <i class="fas fa-check text-green-500 mr-2"></i>
+                      <span>Document Your Work</span>
+                    </li>
+                    <li class="flex items-center">
+                      <i class="fas fa-check text-green-500 mr-2"></i>
+                      <span>Research Market Rates</span>
+                    </li>
+                    <li class="flex items-center">
+                      <i class="fas fa-check text-green-500 mr-2"></i>
+                      <span>Request Pay Transparency</span>
+                    </li>
+                    <li class="flex items-center">
+                      <i class="fas fa-check text-green-500 mr-2"></i>
+                      <span>Report Disparities</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Workplace Safety Section -->
+      <section id="safety" class="mb-16" data-aos="fade-up">
+        <div class="bg-white rounded-xl shadow-md overflow-hidden">
+          <div class="p-8">
+            <div class="flex items-center mb-6">
+              <div
+                class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center mr-4"
+              >
+                <i class="fas fa-shield-alt text-2xl text-green-600"></i>
+              </div>
+              <h2 class="text-3xl font-bold text-gray-800">Workplace Safety</h2>
+            </div>
+            <div class="prose max-w-none">
+              <p class="text-gray-600 mb-6">
+                Every employee has the right to a safe and healthy workplace.
+                Employers must follow safety laws and provide training,
+                equipment, and a hazard-free environment.
+              </p>
+              <ul class="list-disc pl-5 text-gray-700">
+                <li>Safe working conditions and proper equipment</li>
+                <li>Training on workplace hazards</li>
+                <li>Right to report unsafe conditions</li>
+                <li>Protection from retaliation for reporting</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Harassment Section -->
+      <section id="harassment" class="mb-16" data-aos="fade-up">
+        <div class="bg-white rounded-xl shadow-md overflow-hidden">
+          <div class="p-8">
+            <div class="flex items-center mb-6">
+              <div
+                class="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center mr-4"
+              >
+                <i
+                  class="fas fa-exclamation-triangle text-2xl text-red-600"
+                ></i>
+              </div>
+              <h2 class="text-3xl font-bold text-gray-800">Harassment</h2>
+            </div>
+            <div class="prose max-w-none">
+              <p class="text-gray-600 mb-6">
+                Harassment in the workplace is illegal and can take many forms,
+                including verbal, physical, or visual conduct that creates a
+                hostile environment. You have the right to work free from
+                harassment.
+              </p>
+              <ul class="list-disc pl-5 text-gray-700">
+                <li>Unwelcome comments or jokes</li>
+                <li>Physical intimidation or threats</li>
+                <li>Offensive images or emails</li>
+                <li>Sexual advances or requests</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Interactive Quiz Section -->
+      <section class="mb-16" data-aos="fade-up">
+        <div class="bg-white rounded-xl shadow-md p-8">
+          <h2 class="text-3xl font-bold text-gray-800 mb-6">
+            Test Your Knowledge
+          </h2>
+          <div id="quiz-container" class="space-y-6">
+            <!-- Quiz questions will be dynamically loaded here -->
+          </div>
+          <button
+            id="submit-quiz"
+            class="mt-6 px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors"
+          >
+            Submit Answers
+          </button>
+        </div>
+      </section>
+
+      <!-- Resources Section -->
+      <section class="mb-16" data-aos="fade-up">
+        <div class="bg-white rounded-xl shadow-md p-8">
+          <h2 class="text-3xl font-bold text-gray-800 mb-6">
+            Additional Resources
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <a
+              href="https://www.veremark.com/blog/employment-laws-in-the-philippines-a-guide-for-employers"
+              class="block p-6 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+            >
+              <i class="fas fa-file-pdf text-3xl text-red-600 mb-4"></i>
+              <h3 class="text-xl font-semibold mb-2">Legal Guide</h3>
+              <p class="text-gray-600">
+                Comprehensive guide to workplace rights and laws
+              </p>
+            </a>
+            <a
+              href="https://www.youtube.com/watch?v=EsJSzbupDts"
+              class="block p-6 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+            >
+              <i class="fas fa-video text-3xl text-blue-600 mb-4"></i>
+              <h3 class="text-xl font-semibold mb-2">Video Tutorials</h3>
+              <p class="text-gray-600">
+                Learn about your rights through video content
+              </p>
+            </a>
+            <a
+              href="#"
+              class="block p-6 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+            >
+              <i class="fas fa-headset text-3xl text-green-600 mb-4"></i>
+              <h3 class="text-xl font-semibold mb-2">Support Hotline</h3>
+              <p class="text-gray-600">
+                Get immediate assistance with workplace issues
+              </p>
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div>
+            <h3 class="text-xl font-bold mb-4">ParityPoint</h3>
+            <p class="text-gray-400">
+              Empowering workplace equity and inclusion through education and
+              action.
+            </p>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+            <ul class="space-y-2">
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white">Home</a>
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white">Tools</a>
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white">Resources</a>
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white">Contact</a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold mb-4">Connect With Us</h3>
+            <div class="flex space-x-4">
+              <a href="#" class="text-gray-400 hover:text-white"
+                ><i class="fab fa-facebook"></i
+              ></a>
+              <a href="#" class="text-gray-400 hover:text-white"
+                ><i class="fab fa-twitter"></i
+              ></a>
+              <a href="#" class="text-gray-400 hover:text-white"
+                ><i class="fab fa-linkedin"></i
+              ></a>
+              <a href="#" class="text-gray-400 hover:text-white"
+                ><i class="fab fa-instagram"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+        <div
+          class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400"
+        >
+          <p>&copy; 2024 ParityPoint. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Initialize AOS -->
+    <script>
+      AOS.init({
+        duration: 800,
+        once: true,
+      });
+
+      // Quiz functionality
+      const quizQuestions = [
+        {
+          question: "What is protected under anti-discrimination laws?",
+          options: [
+            "Only race and gender",
+            "Multiple characteristics including race, gender, age, and disability",
+            "Only physical disabilities",
+            "None of the above",
+          ],
+          correct: 1,
+        },
+        {
+          question: "What should you do if you suspect pay discrimination?",
+          options: [
+            "Ignore it",
+            "Document the situation and report it",
+            "Confront your employer directly",
+            "Quit your job",
+          ],
+          correct: 1,
+        },
+        {
+          question: "What is a reasonable accommodation?",
+          options: [
+            "A pay raise",
+            "Changes to the workplace that help you do your job",
+            "Extra vacation time",
+            "A promotion",
+          ],
+          correct: 1,
+        },
+      ];
+
+      const quizContainer = document.getElementById("quiz-container");
+
+      quizQuestions.forEach((q, index) => {
+        const questionDiv = document.createElement("div");
+        questionDiv.className = "bg-gray-50 p-6 rounded-lg";
+        questionDiv.innerHTML = `
+                <h3 class="text-lg font-semibold mb-4">${index + 1}. ${
+          q.question
+        }</h3>
+                <div class="space-y-2">
+                    ${q.options
+                      .map(
+                        (opt, i) => `
+                        <label class="flex items-center">
+                            <input type="radio" name="q${index}" value="${i}" class="mr-2">
+                            ${opt}
+                        </label>
+                    `
+                      )
+                      .join("")}
+                </div>
+            `;
+        quizContainer.appendChild(questionDiv);
+      });
+
+      document.getElementById("submit-quiz").addEventListener("click", () => {
+        let score = 0;
+        quizQuestions.forEach((q, index) => {
+          const selected = document.querySelector(
+            `input[name="q${index}"]:checked`
+          );
+          if (selected && parseInt(selected.value) === q.correct) {
+            score++;
+          }
+        });
+        alert(`Your score: ${score}/${quizQuestions.length}`);
+      });
+
+      // Mobile menu toggle
+      document.getElementById("hamburger").addEventListener("click", () => {
+        document.getElementById("nav-list").classList.toggle("active");
+      });
+    </script>
+    <script>
+      // Create particles
+      const particlesContainer = document.getElementById("particles");
+      const particleCount = 20;
+
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement("div");
+        particle.classList.add("particle");
+
+        // Random size
+        const size = Math.random() * 8 + 2;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+
+        // Random position
+        particle.style.left = `${Math.random() * 100}%`;
+        particle.style.top = `${Math.random() * 100}%`;
+
+        // Random animation delay
+        particle.style.animationDelay = `${Math.random() * 12}s`;
+
+        particlesContainer.appendChild(particle);
+      }
+    </script>
+
+    <!-- Modals for each section (place before </body>) -->
+    <div
+      id="antiDiscriminationModal"
+      style="
+        display: none;
+        position: fixed;
+        z-index: 50;
+        left: 0;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.4);
+      "
+    >
+      <div
+        style="
+          background: white;
+          max-width: 400px;
+          margin: 10% auto;
+          padding: 2rem;
+          border-radius: 1rem;
+          position: relative;
+        "
+      >
+        <button
+          id="closeAntiModal"
+          style="
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+          "
+        >
+          &times;
+        </button>
+        <h2 class="text-xl font-bold mb-2">Anti-Discrimination Laws</h2>
+        <p class="text-gray-700 mb-2">
+          Anti-discrimination laws protect you from unfair treatment based on
+          race, gender, age, disability, and more. Learn your rights and how to
+          take action if you experience discrimination at work.
+        </p>
+        <ul class="list-disc pl-5 text-gray-700">
+          <li>Report discrimination to HR or a supervisor.</li>
+          <li>Keep records of incidents and communications.</li>
+          <li>Seek support from advocacy groups or legal counsel.</li>
+          <li>
+            <a
+              class="text-blue-500 hover:underline"
+              href="https://leglobal.law/countries/philippines/employment-law/employment-law-overview-philippines-2/04-anti-discrimination-laws-2/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Learn more about anti-discrimination laws</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div
+      id="equalPayModal"
+      style="
+        display: none;
+        position: fixed;
+        z-index: 50;
+        left: 0;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.4);
+      "
+    >
+      <div
+        style="
+          background: white;
+          max-width: 400px;
+          margin: 10% auto;
+          padding: 2rem;
+          border-radius: 1rem;
+          position: relative;
+        "
+      >
+        <button
+          id="closeEqualModal"
+          style="
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+          "
+        >
+          &times;
+        </button>
+        <h2 class="text-xl font-bold mb-2">Equal Pay Rights</h2>
+        <p class="text-gray-700 mb-2">
+          Equal pay laws ensure that employees performing substantially similar
+          work receive equal compensation, regardless of gender or other
+          protected characteristics.
+        </p>
+        <ul class="list-disc pl-5 text-gray-700">
+          <li>You have the right to discuss wages with coworkers.</li>
+          <li>Request pay transparency and fair pay audits.</li>
+          <li>Report pay disparities to HR or relevant authorities.</li>
+          <li>
+            <a
+              class="text-blue-500 hover:underline"
+              href="https://lawphil.net/statutes/repacts/ra1969/ra_5885_1969.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Learn more about Equal Pay Rights laws</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div
+      id="workplaceSafetyModal"
+      style="
+        display: none;
+        position: fixed;
+        z-index: 50;
+        left: 0;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.4);
+      "
+    >
+      <div
+        style="
+          background: white;
+          max-width: 400px;
+          margin: 10% auto;
+          padding: 2rem;
+          border-radius: 1rem;
+          position: relative;
+        "
+      >
+        <button
+          id="closeSafetyModal"
+          style="
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+          "
+        >
+          &times;
+        </button>
+        <h2 class="text-xl font-bold mb-2">Workplace Safety</h2>
+        <p class="text-gray-700 mb-2">
+          You have the right to a safe and healthy workplace. Employers must
+          provide proper training, equipment, and address hazards promptly.
+        </p>
+        <ul class="list-disc pl-5 text-gray-700">
+          <li>Report unsafe conditions to your employer or OSHA.</li>
+          <li>Participate in safety training and use provided equipment.</li>
+          <li>You may refuse dangerous work if it violates safety laws.</li>
+          <li>
+            <a
+              class="text-blue-500 hover:underline"
+              href="https://lawphil.net/statutes/repacts/ra2018/ra_11058_2018.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Learn more about Workplace Safety</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div
+      id="harassmentModal"
+      style="
+        display: none;
+        position: fixed;
+        z-index: 50;
+        left: 0;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.4);
+      "
+    >
+      <div
+        style="
+          background: white;
+          max-width: 400px;
+          margin: 10% auto;
+          padding: 2rem;
+          border-radius: 1rem;
+          position: relative;
+        "
+      >
+        <button
+          id="closeHarassmentModal"
+          style="
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+          "
+        >
+          &times;
+        </button>
+        <h2 class="text-xl font-bold mb-2">Harassment</h2>
+        <p class="text-gray-700 mb-2">
+          Harassment includes unwelcome comments, conduct, or advances that
+          create a hostile work environment. You have the right to work free
+          from harassment.
+        </p>
+        <ul class="list-disc pl-5 text-gray-700">
+          <li>Report harassment to HR or management immediately.</li>
+          <li>Document all incidents and communications.</li>
+          <li>Seek support from trusted colleagues or legal resources.</li>
+          <li>
+            <a
+              class="text-blue-500 hover:underline"
+              href="https://lawphil.net/statutes/repacts/ra1995/ra_7877_1995.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Learn more about Harassment laws</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <script>
+      // Modal logic for click events
+      function showModal(modalId) {
+        document.getElementById(modalId).style.display = "block";
+      }
+      function hideModal(modalId) {
+        document.getElementById(modalId).style.display = "none";
+      }
+
+      // Anti-Discrimination
+      document
+        .getElementById("anti-discrimination")
+        .addEventListener("click", function (e) {
+          // Prevent accidental navigation if anchor is clicked
+          if (e.target.tagName !== "A") showModal("antiDiscriminationModal");
+        });
+      document.getElementById("closeAntiModal").onclick = function () {
+        hideModal("antiDiscriminationModal");
+      };
+      document.getElementById("antiDiscriminationModal").onclick = function (
+        e
+      ) {
+        if (e.target === this) hideModal("antiDiscriminationModal");
+      };
+
+      // Equal Pay
+      document
+        .getElementById("equal-pay")
+        .addEventListener("click", function (e) {
+          if (e.target.tagName !== "A") showModal("equalPayModal");
+        });
+      document.getElementById("closeEqualModal").onclick = function () {
+        hideModal("equalPayModal");
+      };
+      document.getElementById("equalPayModal").onclick = function (e) {
+        if (e.target === this) hideModal("equalPayModal");
+      };
+
+      // Workplace Safety
+      document.getElementById("safety").addEventListener("click", function (e) {
+        if (e.target.tagName !== "A") showModal("workplaceSafetyModal");
+      });
+      document.getElementById("closeSafetyModal").onclick = function () {
+        hideModal("workplaceSafetyModal");
+      };
+      document.getElementById("workplaceSafetyModal").onclick = function (e) {
+        if (e.target === this) hideModal("workplaceSafetyModal");
+      };
+
+      // Harassment
+      document
+        .getElementById("harassment")
+        .addEventListener("click", function (e) {
+          if (e.target.tagName !== "A") showModal("harassmentModal");
+        });
+      document.getElementById("closeHarassmentModal").onclick = function () {
+        hideModal("harassmentModal");
+      };
+      document.getElementById("harassmentModal").onclick = function (e) {
+        if (e.target === this) hideModal("harassmentModal");
+      };
+    </script>
+  </body>
+</html>

@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Global Perspectives - ParityPoint</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <style>
+      .hero-section {
+        position: relative;
+      }
+
+      .background-pattern {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjZmZmIj48L3JlY3Q+CjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiNmMGYwZjAiPjwvcmVjdD4KPC9zdmc+");
+        opacity: 0.1;
+        z-index: -1;
+      }
+
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.5rem 0;
+      }
+
+      .logo-text {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: #4f46e5;
+      }
+
+      .nav-list {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+      }
+
+      .nav-link {
+        color: #374151;
+        font-weight: 500;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      .nav-link:hover,
+      .nav-link.active {
+        color: #4f46e5;
+      }
+
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+        background: none;
+        border: none;
+      }
+
+      .hamburger span {
+        width: 25px;
+        height: 3px;
+        background-color: #4f46e5;
+        margin: 2px 0;
+        transition: 0.3s;
+      }
+
+      @media (max-width: 768px) {
+        .hamburger {
+          display: flex;
+          z-index: 20;
+        }
+
+        .nav-list {
+          position: fixed;
+          top: 0;
+          right: -100%;
+          flex-direction: column;
+          width: 80%;
+          height: 100vh;
+          background-color: white;
+          padding: 5rem 2rem;
+          z-index: 10;
+          transition: right 0.3s ease;
+          box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-list.active {
+          right: 0;
+        }
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+      }
+
+      .region-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .region-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .global-stat {
+        position: relative;
+        padding-left: 1.5rem;
+      }
+
+      .global-stat::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 4px;
+        background: linear-gradient(to bottom, #0ea5e9, #2563eb);
+        border-radius: 2px;
+      }
+
+      .map-container {
+        position: relative;
+        height: 400px;
+        background: #f8fafc;
+        border-radius: 1rem;
+        overflow: hidden;
+      }
+
+      .map-container::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url("https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/BlankMap-World.svg/1280px-BlankMap-World.svg.png")
+          center/contain no-repeat;
+        opacity: 0.1;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50">
+    <!-- Navigation -->
+    <div class="hero-section">
+      <div class="background-pattern"></div>
+      <div class="container">
+        <div class="header">
+          <div class="logo">
+            <span class="logo-text">ParityPoint</span>
+          </div>
+          <button class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+          <nav>
+            <ul class="nav-list" id="nav-list">
+              <li class="nav-item"><a href="#" class="nav-link">HOME</a></li>
+              <li class="nav-item>
+                <a href="#" class="nav-link active">TOPICS</a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">REFERENCES</a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">ABOUT US</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero Section -->
+    <div
+      class="relative bg-cover bg-center h-screen"
+      style="
+        background-image: url('https://media.licdn.com/dms/image/v2/D4E12AQHa1RNT9nzw4g/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1669651099268?e=2147483647&v=beta&t=nFKV9--KM39eE1D5iFJ7ohBpaqzz4SOyDLdP_s5STM8');
+      "
+    >
+      <div class="absolute inset-0 bg-black opacity-50"></div>
+      <div
+        class="relative container mx-auto px-4 h-full flex flex-col justify-center items-center text-center"
+      >
+        <h1
+          class="text-5xl md:text-6xl font-bold text-white mb-4 drop-shadow-lg"
+        >
+          Global Perspectives
+        </h1>
+        <p class="text-xl md:text-2xl text-sky-100 mb-8 max-w-3xl drop-shadow">
+          Exploring workplace equity across cultures and borders
+        </p>
+        <a
+          href="#"
+          class="inline-block px-8 py-3 bg-sky-500 text-white font-bold rounded-full shadow-lg hover:bg-sky-400 transition duration-300"
+        >
+          Discover More
+        </a>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-16">
+      <!-- Global Overview -->
+      <div class="mb-16" data-aos="fade-up">
+        <div class="bg-white rounded-xl shadow-md p-8">
+          <div class="max-w-3xl mx-auto">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">
+              Global Workplace Equity
+            </h2>
+            <p class="text-lg text-gray-600 mb-6">
+              Workplace equity varies significantly across different regions and
+              cultures. Understanding these differences is crucial for creating
+              truly inclusive global organizations and implementing effective
+              equity initiatives worldwide.
+            </p>
+            <div class="map-container mb-6"></div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div class="global-stat bg-white rounded-xl shadow-md p-6">
+                <h3 class="text-4xl font-bold text-sky-600 mb-2">150+</h3>
+                <p class="text-gray-600">
+                  Countries with workplace equity initiatives
+                </p>
+              </div>
+              <div class="global-stat bg-white rounded-xl shadow-md p-6">
+                <h3 class="text-4xl font-bold text-blue-600 mb-2">45%</h3>
+                <p class="text-gray-600">
+                  Global organizations with equity programs
+                </p>
+              </div>
+              <div class="global-stat bg-white rounded-xl shadow-md p-6">
+                <h3 class="text-4xl font-bold text-indigo-600 mb-2">78%</h3>
+                <p class="text-gray-600">
+                  Countries with anti-discrimination laws
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Regional Insights -->
+      <div class="mb-16" data-aos="fade-up">
+        <h2 class="text-3xl font-bold text-gray-800 mb-8">Global Insights</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="region-card bg-white rounded-xl shadow-md p-6 cursor-pointer" onclick="openModal('northAmerica')">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 bg-sky-100 rounded-lg flex items-center justify-center mr-4">
+                <i class="fas fa-globe-americas text-sky-600 text-xl"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-gray-800">North America</h3>
+                <p class="text-gray-600">
+                  Focus on diversity metrics and representation
+                </p>
+              </div>
+            </div>
+            <ul class="space-y-2 text-gray-600">
+              <li>• Strong emphasis on gender pay equity</li>
+              <li>• Comprehensive anti-discrimination laws</li>
+              <li>• Growing focus on intersectionality</li>
+            </ul>
+          </div>
+          <div class="region-card bg-white rounded-xl shadow-md p-6 cursor-pointer" onclick="openModal('europe')">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                <i class="fas fa-globe-europe text-blue-600 text-xl"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-gray-800">Europe</h3>
+                <p class="text-gray-600">
+                  Strong regulatory framework and social policies
+                </p>
+              </div>
+            </div>
+            <ul class="space-y-2 text-gray-600">
+              <li>• Mandatory gender quotas in some countries</li>
+              <li>• Comprehensive parental leave policies</li>
+              <li>• Focus on work-life balance</li>
+            </ul>
+          </div>
+          <div class="region-card bg-white rounded-xl shadow-md p-6 cursor-pointer" onclick="openModal('asiaPacific')">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mr-4">
+                <i class="fas fa-globe-asia text-indigo-600 text-xl"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-gray-800">Asia Pacific</h3>
+                <p class="text-gray-600">
+                  Cultural diversity and emerging initiatives
+                </p>
+              </div>
+            </div>
+            <ul class="space-y-2 text-gray-600">
+              <li>• Growing focus on gender equality</li>
+              <li>• Emphasis on cultural inclusion</li>
+              <li>• Innovative workplace flexibility programs</li>
+            </ul>
+          </div>
+          <div class="region-card bg-white rounded-xl shadow-md p-6 cursor-pointer" onclick="openModal('africa')">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 bg-violet-100 rounded-lg flex items-center justify-center mr-4">
+                <i class="fas fa-globe-africa text-violet-600 text-xl"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-gray-800">
+                  Africa
+                </h3>
+                <p class="text-gray-600">
+                  Unique cultural considerations and opportunities
+                </p>
+              </div>
+            </div>
+            <ul class="space-y-2 text-gray-600">
+              <li>• Local cultural context integration</li>
+              <li>• Focus on economic empowerment</li>
+              <li>• Community-based initiatives</li>
+            </ul>
+          </div>
+        </div>
+        <p class="mt-4 text-sm text-gray-500 text-center">
+          * Data references a 5-year gap period from 2019 to 2024.
+        </p>
+      </div>
+
+      <!-- Join Global Network -->
+      <div class="mb-16" data-aos="fade-up">
+        <div
+          class="bg-gradient-to-r from-sky-500 to-blue-500 rounded-xl shadow-md p-8 text-white"
+        >
+          <div class="max-w-3xl mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-4">Join Our Global Network</h2>
+            <p class="text-xl mb-8">
+              Connect with equity champions worldwide and share your regional
+              insights
+            </p>
+            <a
+              href="#"
+              class="inline-block px-8 py-3 bg-white text-sky-600 font-bold rounded-lg hover:bg-sky-50 transition-colors"
+            >
+              Connect Now
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Join The Movement -->
+      <div class="mb-16" data-aos="fade-up">
+        <div
+          class="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl shadow-md p-8 text-white"
+        >
+          <div class="max-w-3xl mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-4">Join The Movement</h2>
+            <p class="text-xl mb-8">
+              Be part of the global change for workplace equity. Together, we
+              can create a more inclusive future.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="#"
+                class="inline-block px-8 py-3 bg-white text-indigo-600 font-bold rounded-lg hover:bg-indigo-50 transition-colors"
+              >
+                Sign Up Now
+              </a>
+              <a
+                href="#"
+                class="inline-block px-8 py-3 border-2 border-white text-white font-bold rounded-lg hover:bg-white hover:text-indigo-600 transition-colors"
+              >
+                Learn More
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div>
+            <h3 class="text-xl font-bold mb-4">ParityPoint</h3>
+            <p class="text-gray-400">
+              Empowering workplace equity and inclusion through education and
+              action.
+            </p>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+            <ul class="space-y-2">
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white">Home</a>
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white">Topics</a>
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white">Resources</a>
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white">Contact</a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold mb-4">Connect With Us</h3>
+            <div class="flex space-x-4">
+              <a href="#" class="text-gray-400 hover:text-white"
+                ><i class="fab fa-facebook"></i
+              ></a>
+              <a href="#" class="text-gray-400 hover:text-white"
+                ><i class="fab fa-twitter"></i
+              ></a>
+              <a href="#" class="text-gray-400 hover:text-white"
+                ><i class="fab fa-linkedin"></i
+              ></a>
+              <a href="#" class="text-gray-400 hover:text-white"
+                ><i class="fab fa-instagram"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+        <div
+          class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400"
+        >
+          <p>&copy; 2024 ParityPoint. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Modals for Regional Insights -->
+    <!-- North America Modal -->
+    <div id="northAmericaModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
+      <div class="bg-white rounded-lg p-6 max-w-md w-full relative">
+        <button onclick="closeModal('northAmerica')" class="absolute top-2 right-2 text-gray-600 hover:text-gray-800">&times;</button>
+        <h3 class="text-xl font-bold mb-4">North America</h3>
+        <p class="mb-4">
+          North America is leading in diversity metrics with a strong emphasis on gender pay equity and progressive anti-discrimination laws.
+          For additional details, please <a href="https://example.com/north-america" target="_blank" class="text-blue-600 underline">visit the website</a>.
+        </p>
+      </div>
+    </div>
+
+    <!-- Europe Modal -->
+    <div id="europeModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
+      <div class="bg-white rounded-lg p-6 max-w-md w-full relative">
+        <button onclick="closeModal('europe')" class="absolute top-2 right-2 text-gray-600 hover:text-gray-800">&times;</button>
+        <h3 class="text-xl font-bold mb-4">Europe</h3>
+        <p class="mb-4">
+          Europe stands out for its strong regulatory framework, including parental leave policies and mandatory gender quotas in various industries.
+          For more information, please <a href="https://example.com/europe" target="_blank" class="text-blue-600 underline">visit the website</a>.
+        </p>
+      </div>
+    </div>
+
+    <!-- Asia Pacific Modal -->
+    <div id="asiaPacificModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
+      <div class="bg-white rounded-lg p-6 max-w-md w-full relative">
+        <button onclick="closeModal('asiaPacific')" class="absolute top-2 right-2 text-gray-600 hover:text-gray-800">&times;</button>
+        <h3 class="text-xl font-bold mb-4">Asia Pacific</h3>
+        <p class="mb-4">
+          Asia Pacific is recognized for its cultural inclusion and innovative approaches to workplace flexibility that enhance employee satisfaction.
+          For more details, please <a href="https://example.com/asia-pacific" target="_blank" class="text-blue-600 underline">visit the website</a>.
+        </p>
+      </div>
+    </div>
+
+    <!-- Africa Modal -->
+    <div id="africaModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
+      <div class="bg-white rounded-lg p-6 max-w-md w-full relative">
+        <button onclick="closeModal('africa')" class="absolute top-2 right-2 text-gray-600 hover:text-gray-800">&times;</button>
+        <h3 class="text-xl font-bold mb-4">Africa</h3>
+        <p class="mb-4">
+          The region is noted for its tailored cultural approaches and community-based initiatives, coupled with a focus on economic empowerment.
+          For further resources, please <a href="https://example.com/africa" target="_blank" class="text-blue-600 underline">visit the website</a>.
+        </p>
+      </div>
+    </div>
+
+    <!-- Initialize AOS -->
+    <script>
+      AOS.init({
+        duration: 800,
+        once: true,
+      });
+
+      // Mobile menu toggle
+      document.getElementById("hamburger").addEventListener("click", () => {
+        document.getElementById("nav-list").classList.toggle("active");
+      });
+
+      function openModal(region) {
+        document.getElementById(region + 'Modal').classList.remove('hidden');
+      }
+      function closeModal(region) {
+        document.getElementById(region + 'Modal').classList.add('hidden');
+      }
+    </script>
+  </body>
+</html>

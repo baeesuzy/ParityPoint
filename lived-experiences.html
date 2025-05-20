@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lived Experiences - ParityPoint</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <style>
+      .hero-section {
+        position: relative;
+      }
+
+      .background-pattern {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjZmZmIj48L3JlY3Q+CjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiNmMGYwZjAiPjwvcmVjdD4KPC9zdmc+");
+        opacity: 0.1;
+        z-index: -1;
+      }
+
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.5rem 0;
+      }
+
+      .logo-text {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: #4f46e5;
+      }
+
+      .nav-list {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+      }
+
+      .nav-link {
+        color: #374151;
+        font-weight: 500;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      .nav-link:hover,
+      .nav-link.active {
+        color: #4f46e5;
+      }
+
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+        background: none;
+        border: none;
+      }
+
+      .hamburger span {
+        width: 25px;
+        height: 3px;
+        background-color: #4f46e5;
+        margin: 2px 0;
+        transition: 0.3s;
+      }
+
+      @media (max-width: 768px) {
+        .hamburger {
+          display: flex;
+          z-index: 20;
+        }
+
+        .nav-list {
+          position: fixed;
+          top: 0;
+          right: -100%;
+          flex-direction: column;
+          width: 80%;
+          height: 100vh;
+          background-color: white;
+          padding: 5rem 2rem;
+          z-index: 10;
+          transition: right 0.3s ease;
+          box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-list.active {
+          right: 0;
+        }
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+      }
+
+      .story-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .story-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .quote-icon {
+        position: absolute;
+        top: -20px;
+        left: 20px;
+        background: white;
+        padding: 10px;
+        border-radius: 50%;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50">
+    <!-- Navigation -->
+    <div class="hero-section">
+      <div class="background-pattern"></div>
+      <div class="container">
+        <div class="header">
+          <div class="logo">
+            <span class="logo-text">ParityPoint</span>
+          </div>
+          <button class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+          <nav>
+            <ul class="nav-list" id="nav-list">
+              <li class="nav-item"><a href="#" class="nav-link">HOME</a></li>
+              <li class="nav-item">
+                <a href="#" class="nav-link active">TOPICS</a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">REFERENCES</a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">ABOUT US</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero Section -->
+    <div
+      class="relative overflow-hidden bg-gradient-to-br from-pink-600 via-purple-600 to-indigo-700 py-28 md:py-40 shadow-lg hero-section"
+    >
+      <!-- Decorative SVG Blobs -->
+      <svg
+        class="absolute left-0 top-0 w-80 h-80 opacity-20 -z-10"
+        viewBox="0 0 400 400"
+        fill="none"
+      >
+        <circle cx="200" cy="200" r="200" fill="#fff" />
+      </svg>
+      <svg
+        class="absolute right-0 bottom-0 w-64 h-64 opacity-10 -z-10"
+        viewBox="0 0 400 400"
+        fill="none"
+      >
+        <circle cx="200" cy="200" r="200" fill="#fff" />
+      </svg>
+      <div
+        class="container mx-auto px-4 flex flex-col items-center justify-center text-center"
+      >
+        <div data-aos="fade-down">
+          <div
+            class="inline-flex items-center bg-white bg-opacity-20 rounded-full px-5 py-2 mb-6 shadow"
+          >
+            <i class="fas fa-comments text-yellow-300 mr-3 text-2xl"></i>
+            <span class="text-white font-semibold tracking-wide text-lg">
+              Lived Experiences
+            </span>
+          </div>
+          <h1
+            class="text-4xl md:text-6xl font-extrabold text-white mb-6 drop-shadow-lg leading-tight"
+          >
+            Real Stories. Real Voices.<br />
+            <span class="text-yellow-300">Workplace Disparity Uncovered</span>
+          </h1>
+          <p class="text-xl md:text-2xl text-pink-100 mb-8 max-w-2xl mx-auto">
+            Discover authentic narratives and case studies from individuals who
+            have faced, challenged, and overcome workplace discrimination. Learn
+            from their journeys and find inspiration to create change.
+          </p>
+          <a
+            href="#stories"
+            class="inline-block px-10 py-4 bg-yellow-300 text-pink-700 font-bold rounded-lg shadow hover:bg-yellow-200 transition-colors text-lg"
+          >
+            Explore Stories <i class="fas fa-arrow-down ml-2"></i>
+          </a>
+        </div>
+        <div class="mt-12 flex justify-center" data-aos="fade-up">
+          <div class="bg-white bg-opacity-10 rounded-full p-6 shadow-lg">
+            <i class="fas fa-user-friends text-white text-6xl"></i>
+          </div>
+        </div>
+      </div>
+      <!-- Decorative SVG Wave -->
+      <div
+        class="absolute bottom-0 left-0 w-full overflow-hidden leading-none"
+        aria-hidden="true"
+      >
+        <svg
+          class="w-full h-24"
+          viewBox="0 0 1440 100"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fill="white"
+            fill-opacity="0.15"
+            d="M0,0 C480,100 960,0 1440,100 L1440,100 L0,100 Z"
+          ></path>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Featured Stories -->
+    <div id="stories" class="container mx-auto px-4 py-16">
+      <div class="mb-16" data-aos="fade-up">
+        <h2 class="text-3xl font-bold text-gray-800 mb-8">Featured Stories</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="story-card bg-white rounded-xl shadow-md p-8 relative">
+            <div class="quote-icon">
+              <i class="fas fa-quote-right text-pink-600"></i>
+            </div>
+            <div class="flex items-center mb-6">
+              <img
+                src="img/deborah.png"
+                alt="Deborah"
+                class="w-16 h-16 rounded-full mr-4"
+              />
+              <div>
+                <h3 class="text-xl font-bold text-gray-800">Deborah</h3>
+                <p class="text-gray-600">Woman Bus Driver</p>
+              </div>
+            </div>
+            <p class="text-gray-600 mb-6 italic">
+              "When I asked him to explain his comments, he didn’t really have
+              any basis for this concern except that I was a woman and that
+              driving a bus was, in his eyes, ‘man’s work’. He insisted I’d have
+              to stay on the lower training wage until I’d proven myself"
+            </p>
+            <a
+              href="https://www.humanrights.vic.gov.au/get-help/stories/deborahs-story/"
+              class="text-pink-600 font-semibold hover:text-pink-700"
+            >
+              Read Full Story <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+          </div>
+          <div class="story-card bg-white rounded-xl shadow-md p-8 relative">
+            <div class="quote-icon">
+              <i class="fas fa-quote-right text-purple-600"></i>
+            </div>
+            <div class="flex items-center mb-6">
+              <img
+                src="img/myra.png"
+                alt="Maria Rodriguez"
+                class="w-16 h-16 rounded-full mr-4"
+              />
+              <div>
+                <h3 class="text-xl font-bold text-gray-800">
+                  Myrna Pitaluna Alngog
+                </h3>
+                <p class="text-gray-600">Construction, supervisor</p>
+              </div>
+            </div>
+            <p class="text-gray-600 mb-6 italic">
+              "As a woman in the construction industry, I have had to deal with
+              verbal criticism, bullying and discrimination. They think I am not
+              fit for the job. Men would sometimes be so rude as to say I should
+              go home to my province and find a husband to take care of me or be
+              a cashier in a department store."
+            </p>
+            <a
+              href="https://voices.ilo.org/stories/how-i-overcame-gender-discrimination-in-my-construction-job"
+              class="text-purple-600 font-semibold hover:text-purple-700"
+            >
+              Read Full Story <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Success Stories -->
+      <div class="mb-16" data-aos="fade-up">
+        <h2 class="text-3xl font-bold text-gray-800 mb-8">Success Stories</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="story-card bg-white rounded-xl shadow-md p-6">
+            <div
+              class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4"
+            >
+              <i class="fas fa-trophy text-green-600 text-xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-3">
+              Breaking Barriers
+            </h3>
+            <p class="text-gray-600 mb-4">
+              How one organization transformed its leadership pipeline to
+              achieve gender parity in executive roles.
+            </p>
+            <a
+              href="https://blogs.worldbank.org/en/eastasiapacific/overcoming-barriers-womens-work-philippines?fbclid=IwY2xjawKZYW5leHRuA2FlbQIxMABicmlkETFXTkZsZkI4VEVNWGxlRjN6AR4UIOixd4qA67fXhqvDY1GF4iJvk0vH7EK8qDxRhCDH0nLAmDasTLgubNuwYQ_aem_NhEx2ILYDwpje1bEFBBDhw"
+              class="text-green-600 font-semibold hover:text-green-700"
+            >
+              Read Case Study <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+          </div>
+          <div class="story-card bg-white rounded-xl shadow-md p-6">
+            <div
+              class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4"
+            >
+              <i class="fas fa-handshake text-blue-600 text-xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-3">
+              Mentorship Success
+            </h3>
+            <p class="text-gray-600 mb-4">
+              A mentorship program that helped 50 women advance to leadership
+              positions within two years.
+            </p>
+            <a
+              href="https://www.sciencedirect.com/science/article/pii/S0278431919301641"
+              class="text-blue-600 font-semibold hover:text-blue-700"
+            >
+              Read Case Study <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+          </div>
+          <div class="story-card bg-white rounded-xl shadow-md p-6">
+            <div
+              class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mb-4"
+            >
+              <i class="fas fa-lightbulb text-yellow-600 text-xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-3">
+              Policy Innovation
+            </h3>
+            <p class="text-gray-600 mb-4">
+              How flexible work policies led to increased retention and
+              promotion rates for working parents.
+            </p>
+            <a
+              href="https://www.igi-global.com/chapter/the-impact-of-flexible-work-policies-on-employee-well-being-and-retention-in-modern-organizations/377941"
+              class="text-yellow-600 font-semibold hover:text-yellow-700"
+            >
+              Read Case Study <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Share Your Story -->
+      <div class="mb-16" data-aos="fade-up">
+        <div
+          class="bg-gradient-to-r from-pink-500 to-purple-500 rounded-xl shadow-md p-8 text-white"
+        >
+          <div class="max-w-3xl mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-4">Share Your Story</h2>
+            <p class="text-xl mb-8">
+              Your experience matters. Share your journey to inspire others and
+              contribute to the movement for workplace equity.
+            </p>
+            <a
+              href="#"
+              class="inline-block px-8 py-3 bg-white text-pink-600 font-bold rounded-lg hover:bg-pink-50 transition-colors"
+            >
+              Submit Your Story
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Resources -->
+      <div class="mb-16" data-aos="fade-up">
+        <h2 class="text-3xl font-bold text-gray-800 mb-8">Support Resources</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="bg-white rounded-xl shadow-md p-6">
+            <div
+              class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4"
+            >
+              <i class="fas fa-book text-indigo-600 text-xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-3">
+              Storytelling Guide
+            </h3>
+            <p class="text-gray-600 mb-4">
+              Learn how to effectively share your experiences and advocate for
+              change.
+            </p>
+            <a
+              href="https://www.shareable.net/storytelling-and-the-art-of-advocacy/"
+              class="text-indigo-600 font-semibold hover:text-indigo-700"
+            >
+              Download Guide <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+          </div>
+          <div class="bg-white rounded-xl shadow-md p-6">
+            <div
+              class="w-12 h-12 bg-pink-100 rounded-lg flex items-center justify-center mb-4"
+            >
+              <i class="fas fa-users text-pink-600 text-xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-3">Support Groups</h3>
+            <p class="text-gray-600 mb-4">
+              Connect with others who share similar experiences and challenges.
+            </p>
+            <a
+              href="https://www.facebook.com/groups/workplacequityequality/"
+              class="text-pink-600 font-semibold hover:text-pink-700"
+            >
+              Find Groups <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+          </div>
+          <div class="bg-white rounded-xl shadow-md p-6">
+            <div
+              class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4"
+            >
+              <i class="fas fa-hands-helping text-purple-600 text-xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-3">Advocacy Tools</h3>
+            <p class="text-gray-600 mb-4">
+              Resources and templates for advocating for change in your
+              workplace.
+            </p>
+            <a
+              href="https://ctb.ku.edu/en/advocating-change"
+              class="text-purple-600 font-semibold hover:text-purple-700"
+            >
+              Access Tools <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div>
+            <h3 class="text-xl font-bold mb-4">ParityPoint</h3>
+            <p class="text-gray-400">
+              Empowering workplace equity and inclusion through education and
+              action.
+            </p>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+            <ul class="space-y-2">
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white">Home</a>
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white">Topics</a>
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white">Resources</a>
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white">Contact</a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold mb-4">Connect With Us</h3>
+            <div class="flex space-x-4">
+              <a href="#" class="text-gray-400 hover:text-white"
+                ><i class="fab fa-facebook"></i
+              ></a>
+              <a href="#" class="text-gray-400 hover:text-white"
+                ><i class="fab fa-twitter"></i
+              ></a>
+              <a href="#" class="text-gray-400 hover:text-white"
+                ><i class="fab fa-linkedin"></i
+              ></a>
+              <a href="#" class="text-gray-400 hover:text-white"
+                ><i class="fab fa-instagram"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+        <div
+          class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400"
+        >
+          <p>&copy; 2024 ParityPoint. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Initialize AOS -->
+    <script>
+      AOS.init({
+        duration: 800,
+        once: true,
+      });
+
+      // Mobile menu toggle
+      document.getElementById("hamburger").addEventListener("click", () => {
+        document.getElementById("nav-list").classList.toggle("active");
+      });
+    </script>
+  </body>
+</html>

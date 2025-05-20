@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Community Forum - ParityPoint</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <style>
+      .hero-section {
+        position: relative;
+      }
+
+      .background-pattern {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjZmZmIj48L3JlY3Q+CjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiNmMGYwZjAiPjwvcmVjdD4KPC9zdmc+");
+        opacity: 0.1;
+        z-index: -1;
+      }
+
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.5rem 0;
+      }
+
+      .logo-text {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: #4f46e5;
+      }
+
+      .nav-list {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+      }
+
+      .nav-link {
+        color: #374151;
+        font-weight: 500;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      .nav-link:hover,
+      .nav-link.active {
+        color: #4f46e5;
+      }
+
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+        background: none;
+        border: none;
+      }
+
+      .hamburger span {
+        width: 25px;
+        height: 3px;
+        background-color: #4f46e5;
+        margin: 2px 0;
+        transition: 0.3s;
+      }
+
+      @media (max-width: 768px) {
+        .hamburger {
+          display: flex;
+          z-index: 20;
+        }
+
+        .nav-list {
+          position: fixed;
+          top: 0;
+          right: -100%;
+          flex-direction: column;
+          width: 80%;
+          height: 100vh;
+          background-color: white;
+          padding: 5rem 2rem;
+          z-index: 10;
+          transition: right 0.3s ease;
+          box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-list.active {
+          right: 0;
+        }
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+      }
+
+      .forum-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .forum-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .topic-tag {
+        display: inline-block;
+        padding: 0.25rem 0.75rem;
+        border-radius: 9999px;
+        font-size: 0.875rem;
+        font-weight: 500;
+      }
+
+      .topic-tag.leadership {
+        background-color: #e0f2fe;
+        color: #0369a1;
+      }
+
+      .topic-tag.policy {
+        background-color: #fce7f3;
+        color: #be185d;
+      }
+
+      .topic-tag.career {
+        background-color: #fef3c7;
+        color: #92400e;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50">
+    <!-- Navigation -->
+    <div class="hero-section">
+      <div class="background-pattern"></div>
+      <div class="container">
+        <div class="header">
+          <div class="logo">
+            <span class="logo-text">ParityPoint</span>
+          </div>
+          <button class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+          <nav>
+            <ul class="nav-list" id="nav-list">
+              <li class="nav-item"><a href="#" class="nav-link">HOME</a></li>
+              <li class="nav-item">
+                <a href="#" class="nav-link active">TOPICS</a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">REFERENCES</a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">ABOUT US</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero Section -->
+    <div
+      class="relative overflow-hidden bg-gradient-to-br from-teal-700 via-emerald-600 to-cyan-500 py-32 md:py-44 shadow-lg hero-section"
+    >
+      <!-- Decorative SVG Blobs -->
+      <svg
+        class="absolute left-0 top-0 w-80 h-80 opacity-20 -z-10"
+        viewBox="0 0 400 400"
+        fill="none"
+      >
+        <circle cx="200" cy="200" r="200" fill="#fff" />
+      </svg>
+      <svg
+        class="absolute right-0 bottom-0 w-64 h-64 opacity-10 -z-10"
+        viewBox="0 0 400 400"
+        fill="none"
+      >
+        <circle cx="200" cy="200" r="200" fill="#fff" />
+      </svg>
+      <div
+        class="container mx-auto px-4 flex flex-col items-center justify-center text-center"
+      >
+        <div data-aos="fade-down">
+          <div
+            class="inline-flex items-center bg-white bg-opacity-20 rounded-full px-6 py-3 mb-6 shadow"
+          >
+            <i class="fas fa-users text-yellow-300 mr-3 text-2xl"></i>
+            <span class="text-white font-semibold tracking-wide text-lg">
+              Community Forum
+            </span>
+          </div>
+          <h1
+            class="text-4xl md:text-6xl font-extrabold text-white mb-6 drop-shadow-lg leading-tight"
+          >
+            Connect. Share. Empower.<br />
+            <span class="text-yellow-300">Your Voice Matters</span>
+          </h1>
+          <p class="text-xl md:text-2xl text-teal-100 mb-8 max-w-2xl mx-auto">
+            Join a vibrant community of professionals, allies, and advocates.
+            Exchange ideas, seek advice, and build solidarity for workplace
+            equity.
+          </p>
+          <a
+            href="#featured-discussions"
+            class="inline-block px-10 py-4 bg-yellow-300 text-teal-900 font-bold rounded-lg shadow hover:bg-yellow-200 transition-colors text-lg"
+          >
+            Join the Conversation <i class="fas fa-arrow-down ml-2"></i>
+          </a>
+        </div>
+        <div class="mt-12 flex justify-center" data-aos="fade-up">
+          <div class="bg-white bg-opacity-10 rounded-full p-6 shadow-lg">
+            <i class="fas fa-comments text-white text-6xl"></i>
+          </div>
+        </div>
+      </div>
+      <!-- Decorative SVG Wave -->
+      <div
+        class="absolute bottom-0 left-0 w-full overflow-hidden leading-none"
+        aria-hidden="true"
+      >
+        <svg
+          class="w-full h-24"
+          viewBox="0 0 1440 100"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fill="white"
+            fill-opacity="0.15"
+            d="M0,0 C480,100 960,0 1440,100 L1440,100 L0,100 Z"
+          ></path>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-16">
+      <!-- Featured Discussions -->
+      <div class="mb-16" id="featured-discussions" data-aos="fade-up">
+        <div class="flex justify-between items-center mb-8">
+          <h2 class="text-3xl font-bold text-gray-800">Featured Discussions</h2>
+          <a href="#" class="text-teal-600 font-semibold hover:text-teal-700">
+            View All <i class="fas fa-arrow-right ml-2"></i>
+          </a>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- Example Discussion Card with Reply -->
+          <div class="forum-card bg-white rounded-xl shadow-md p-6">
+            <div class="flex items-center mb-4">
+              <img
+                src="https://randomuser.me/api/portraits/women/3.jpg"
+                alt="Emma Thompson"
+                class="w-12 h-12 rounded-full mr-4"
+              />
+              <div>
+                <h3 class="text-xl font-bold text-gray-800">Emma Thompson</h3>
+                <p class="text-gray-600">Senior HR Manager</p>
+              </div>
+            </div>
+            <h4 class="text-lg font-semibold text-gray-800 mb-2">
+              Implementing Flexible Work Policies
+            </h4>
+            <p class="text-gray-600 mb-4">
+              Sharing our journey in creating and implementing flexible work
+              arrangements that benefit all employees...
+            </p>
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex space-x-4">
+                <span class="text-gray-500"
+                  ><i class="far fa-comment mr-1"></i> 24</span
+                >
+                <span class="text-gray-500"
+                  ><i class="far fa-heart mr-1"></i> 156</span
+                >
+              </div>
+              <span class="topic-tag policy">Policy</span>
+            </div>
+            <!-- Simple Reply Box (not persistent after reload) -->
+            <div>
+              <form
+                onsubmit="event.preventDefault(); addReply(this, 'replies1'); this.reset();"
+              >
+                <input
+                  type="text"
+                  class="w-full border rounded px-3 py-2 mb-2"
+                  placeholder="Write a reply..."
+                  required
+                />
+                <button
+                  type="submit"
+                  class="bg-teal-600 text-white px-4 py-2 rounded hover:bg-teal-700 transition-colors"
+                >
+                  Reply
+                </button>
+              </form>
+              <div id="replies1" class="mt-3 space-y-2"></div>
+            </div>
+          </div>
+          <div class="forum-card bg-white rounded-xl shadow-md p-6">
+            <div class="flex items-center mb-4">
+              <img
+                src="https://randomuser.me/api/portraits/women/4.jpg"
+                alt="Lisa Chen"
+                class="w-12 h-12 rounded-full mr-4"
+              />
+              <div>
+                <h3 class="text-xl font-bold text-gray-800">Lisa Chen</h3>
+                <p class="text-gray-600">Tech Lead</p>
+              </div>
+            </div>
+            <h4 class="text-lg font-semibold text-gray-800 mb-2">
+              Breaking Through the Glass Ceiling
+            </h4>
+            <p class="text-gray-600 mb-4">
+              My experience navigating leadership challenges and strategies that
+              helped me advance in tech...
+            </p>
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex space-x-4">
+                <span class="text-gray-500"
+                  ><i class="far fa-comment mr-1"></i> 42</span
+                >
+                <span class="text-gray-500"
+                  ><i class="far fa-heart mr-1"></i> 203</span
+                >
+              </div>
+              <span class="topic-tag leadership">Leadership</span>
+            </div>
+            <div>
+              <form
+                onsubmit="event.preventDefault(); addReply(this, 'replies2'); this.reset();"
+              >
+                <input
+                  type="text"
+                  class="w-full border rounded px-3 py-2 mb-2"
+                  placeholder="Write a reply..."
+                  required
+                />
+                <button
+                  type="submit"
+                  class="bg-teal-600 text-white px-4 py-2 rounded hover:bg-teal-700 transition-colors"
+                >
+                  Reply
+                </button>
+              </form>
+              <div id="replies2" class="mt-3 space-y-2"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Discussion Categories -->
+      <div class="mb-16" data-aos="fade-up">
+        <h2 class="text-3xl font-bold text-gray-800 mb-8">
+          Discussion Categories
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="forum-card bg-white rounded-xl shadow-md p-6">
+            <div
+              class="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-4"
+            >
+              <i class="fas fa-briefcase text-teal-600 text-xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-3">
+              Career Development
+            </h3>
+            <p class="text-gray-600 mb-4">
+              Share experiences and advice about career growth and advancement
+            </p>
+            <div class="flex items-center justify-between">
+              <span class="text-gray-500"># members</span>
+              <a
+                href="https://t.me/s/BiTCDC?before=1196"
+                class="text-teal-600 font-semibold hover:text-teal-700"
+              >
+                Join <i class="fas fa-arrow-right ml-2"></i>
+              </a>
+            </div>
+          </div>
+          <div class="forum-card bg-white rounded-xl shadow-md p-6">
+            <div
+              class="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center mb-4"
+            >
+              <i class="fas fa-users text-emerald-600 text-xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-3">
+              Leadership & Management
+            </h3>
+            <p class="text-gray-600 mb-4">
+              Discuss leadership challenges and strategies for success
+            </p>
+            <div class="flex items-center justify-between">
+              <span class="text-gray-500"># members</span>
+              <a
+                href="https://t.me/s/BiTCDC?before=1196"
+                class="text-emerald-600 font-semibold hover:text-emerald-700"
+              >
+                Join <i class="fas fa-arrow-right ml-2"></i>
+              </a>
+            </div>
+          </div>
+          <div class="forum-card bg-white rounded-xl shadow-md p-6">
+            <div
+              class="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center mb-4"
+            >
+              <i class="fas fa-balance-scale text-cyan-600 text-xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-3">
+              Policy & Advocacy
+            </h3>
+            <p class="text-gray-600 mb-4">
+              Share insights about workplace policies and advocacy efforts
+            </p>
+            <div class="flex items-center justify-between">
+              <span class="text-gray-500">1k members</span>
+              <a
+                href="https://t.me/s/BiTCDC?before=1196"
+                class="text-cyan-600 font-semibold hover:text-cyan-700"
+              >
+                Join <i class="fas fa-arrow-right ml-2"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Upcoming Events -->
+      <div class="mb-16" data-aos="fade-up">
+        <h2 class="text-3xl font-bold text-gray-800 mb-8">Upcoming Events</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="forum-card bg-white rounded-xl shadow-md p-6">
+            <div class="flex items-center mb-4">
+              <div
+                class="w-16 h-16 bg-teal-100 rounded-lg flex items-center justify-center mr-4"
+              >
+                <div class="text-center">
+                  <div class="text-2xl font-bold text-teal-600">15</div>
+                  <div class="text-sm text-teal-600">MAR</div>
+                </div>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-gray-800">
+                  Virtual Roundtable
+                </h3>
+                <p class="text-gray-600">Women in Tech Leadership</p>
+              </div>
+            </div>
+            <p class="text-gray-600 mb-4">
+              Join industry leaders for an interactive discussion about
+              advancing women in technology leadership roles.
+            </p>
+            <a href="#" class="text-teal-600 font-semibold hover:text-teal-700">
+              Register Now <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+          </div>
+          <div class="forum-card bg-white rounded-xl shadow-md p-6">
+            <div class="flex items-center mb-4">
+              <div
+                class="w-16 h-16 bg-emerald-100 rounded-lg flex items-center justify-center mr-4"
+              >
+                <div class="text-center">
+                  <div class="text-2xl font-bold text-emerald-600">22</div>
+                  <div class="text-sm text-emerald-600">MAR</div>
+                </div>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-gray-800">Workshop</h3>
+                <p class="text-gray-600">Building Inclusive Teams</p>
+              </div>
+            </div>
+            <p class="text-gray-600 mb-4">
+              Learn practical strategies for creating and maintaining diverse,
+              inclusive teams in your organization.
+            </p>
+            <a
+              href="#"
+              class="text-emerald-600 font-semibold hover:text-emerald-700"
+            >
+              Register Now <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Join Community -->
+      <div class="mb-16" data-aos="fade-up">
+        <div
+          class="bg-gradient-to-r from-teal-500 to-emerald-500 rounded-xl shadow-md p-8 text-white"
+        >
+          <div class="max-w-3xl mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-4">Join Our Community</h2>
+            <p class="text-xl mb-8">
+              Connect with like-minded professionals, share your experiences,
+              and contribute to meaningful discussions about workplace equity.
+            </p>
+            <a
+              href="#"
+              class="inline-block px-8 py-3 bg-white text-teal-600 font-bold rounded-lg hover:bg-teal-50 transition-colors"
+            >
+              Sign Up Now
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div>
+            <h3 class="text-xl font-bold mb-4">ParityPoint</h3>
+            <p class="text-gray-400">
+              Empowering workplace equity and inclusion through education and
+              action.
+            </p>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+            <ul class="space-y-2">
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white">Home</a>
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white">Topics</a>
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white">Resources</a>
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white">Contact</a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold mb-4">Connect With Us</h3>
+            <div class="flex space-x-4">
+              <a href="#" class="text-gray-400 hover:text-white"
+                ><i class="fab fa-facebook"></i
+              ></a>
+              <a href="#" class="text-gray-400 hover:text-white"
+                ><i class="fab fa-twitter"></i
+              ></a>
+              <a href="#" class="text-gray-400 hover:text-white"
+                ><i class="fab fa-linkedin"></i
+              ></a>
+              <a href="#" class="text-gray-400 hover:text-white"
+                ><i class="fab fa-instagram"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+        <div
+          class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400"
+        >
+          <p>&copy; 2024 ParityPoint. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Initialize AOS -->
+    <script>
+      AOS.init({
+        duration: 800,
+        once: true,
+      });
+
+      // Mobile menu toggle
+      document.getElementById("hamburger").addEventListener("click", () => {
+        document.getElementById("nav-list").classList.toggle("active");
+      });
+    </script>
+    <!-- Simple in-memory reply system (not persistent after reload) -->
+    <script>
+      function addReply(form, repliesId) {
+        const input = form.querySelector('input[type="text"]');
+        if (input.value.trim() === "") return;
+        const repliesDiv = document.getElementById(repliesId);
+        const reply = document.createElement("div");
+        reply.className =
+          "bg-teal-50 border border-teal-100 rounded px-3 py-2 text-gray-700 text-left";
+        reply.innerHTML = `<i class="fas fa-reply mr-2 text-teal-400"></i>${input.value}`;
+        repliesDiv.appendChild(reply);
+      }
+    </script>
+  </body>
+</html>

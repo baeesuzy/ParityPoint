@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Allyship Toolkit - ParityPoint</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <!-- AOS Library for scroll animations -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <style>
+      /* Fix for background pattern overlay */
+      .hero-section {
+        position: relative;
+      }
+
+      .background-pattern {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjZmZmIj48L3JlY3Q+CjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiNmMGYwZjAiPjwvcmVjdD4KPC9zdmc+");
+        opacity: 0.1;
+        z-index: -1;
+      }
+
+      /* Header styles */
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.5rem 0;
+      }
+
+      .logo-text {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: #4f46e5;
+      }
+
+      /* Navigation styles */
+      .nav-list {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+      }
+
+      .nav-link {
+        color: #374151;
+        font-weight: 500;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      .nav-link:hover,
+      .nav-link.active {
+        color: #4f46e5;
+      }
+
+      /* Hamburger menu for mobile */
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+        background: none;
+        border: none;
+      }
+
+      .hamburger span {
+        width: 25px;
+        height: 3px;
+        background-color: #4f46e5;
+        margin: 2px 0;
+        transition: 0.3s;
+      }
+
+      /* Mobile responsiveness */
+      @media (max-width: 768px) {
+        .hamburger {
+          display: flex;
+          z-index: 20;
+        }
+
+        .nav-list {
+          position: fixed;
+          top: 0;
+          right: -100%;
+          flex-direction: column;
+          width: 80%;
+          height: 100vh;
+          background-color: white;
+          padding: 5rem 2rem;
+          z-index: 10;
+          transition: right 0.3s ease;
+          box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-list.active {
+          right: 0;
+        }
+      }
+
+      /* Container styles */
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50">
+    <!-- Navigation -->
+    <div class="hero-section">
+      <!-- Background Pattern -->
+      <div class="background-pattern"></div>
+
+      <div class="container">
+        <!-- Header and Navigation -->
+        <div class="header">
+          <!-- Logo -->
+          <div class="logo">
+            <span class="logo-text">ParityPoint</span>
+          </div>
+
+          <!-- Hamburger Menu for Mobile -->
+          <button class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+
+          <!-- Navigation -->
+          <nav>
+            <ul class="nav-list" id="nav-list">
+              <li class="nav-item">
+                <a href="index.html" class="nav-link active">HOME</a>
+              </li>
+              <li class="nav-item"><a href="#" class="nav-link">TOPICS</a></li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">REFERENCES</a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">ABOUT US</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero Section: Landing Only -->
+    <div
+      class="relative overflow-hidden bg-gradient-to-br from-purple-600 via-indigo-500 to-blue-500 pt-32 pb-28"
+    >
+      <div
+        class="absolute inset-0 opacity-20 pointer-events-none animate-pulse"
+        style="
+          background: radial-gradient(
+            circle at 30% 30%,
+            #fff 0%,
+            transparent 70%
+          );
+        "
+      ></div>
+      <div
+        class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center"
+      >
+        <h1
+          class="text-5xl md:text-6xl font-extrabold text-white mb-6 drop-shadow-2xl"
+          data-aos="fade-down"
+        >
+          Allyship Toolkit
+        </h1>
+        <p
+          class="text-2xl text-indigo-100 mb-8 max-w-2xl mx-auto"
+          data-aos="fade-up"
+        >
+          Learn how to be an effective ally and create a more inclusive
+          workplace environment.
+        </p>
+        <a
+          href="#active-listening"
+          class="inline-block px-8 py-4 bg-white text-indigo-700 font-bold rounded-full shadow-lg hover:bg-indigo-50 transition"
+          data-aos="zoom-in"
+        >
+          Get Started
+        </a>
+      </div>
+      <!-- Decorative SVG Wave -->
+      <div
+        class="absolute bottom-0 left-0 w-full overflow-hidden leading-none"
+        aria-hidden="true"
+      >
+        <svg
+          viewBox="0 0 1920 120"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-full h-24"
+        >
+          <path
+            d="M0 0H1920V60C1600 120 1200 0 960 60C720 120 320 0 0 60V0Z"
+            fill="#fff"
+            fill-opacity="0.8"
+          />
+        </svg>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <!-- Quick Navigation -->
+      <div class="bg-white rounded-xl shadow-md p-6 mb-12" data-aos="fade-up">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">Quick Navigation</h2>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <a
+            href="#active-listening"
+            class="flex items-center p-4 bg-purple-50 rounded-lg hover:bg-purple-100 transition-colors"
+          >
+            <i class="fas fa-headphones text-purple-600 mr-3"></i>
+            <span>Active Listening</span>
+          </a>
+          <a
+            href="#inclusive-communication"
+            class="flex items-center p-4 bg-indigo-50 rounded-lg hover:bg-indigo-100 transition-colors"
+          >
+            <i class="fas fa-comments text-indigo-600 mr-3"></i>
+            <span>Inclusive Communication</span>
+          </a>
+          <a
+            href="#support-strategies"
+            class="flex items-center p-4 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors"
+          >
+            <i class="fas fa-hands-helping text-blue-600 mr-3"></i>
+            <span>Support Strategies</span>
+          </a>
+          <a
+            href="#action-steps"
+            class="flex items-center p-4 bg-green-50 rounded-lg hover:bg-green-100 transition-colors"
+          >
+            <i class="fas fa-tasks text-green-600 mr-3"></i>
+            <span>Action Steps</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Active Listening Section -->
+      <section id="active-listening" class="mb-16" data-aos="fade-up">
+        <div class="bg-white rounded-xl shadow-md overflow-hidden">
+          <div class="p-8">
+            <div class="flex items-center mb-6">
+              <div
+                class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center mr-4"
+              >
+                <i class="fas fa-headphones text-2xl text-purple-600"></i>
+              </div>
+              <h2 class="text-3xl font-bold text-gray-800">Active Listening</h2>
+            </div>
+            <div class="prose max-w-none">
+              <p class="text-gray-600 mb-6">
+                Active listening is a crucial skill for effective allyship.
+                Learn how to truly hear and understand others' experiences.
+              </p>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-gray-50 p-6 rounded-lg">
+                  <h3 class="text-xl font-semibold mb-4">Key Techniques</h3>
+                  <ul class="space-y-3">
+                    <li class="flex items-center">
+                      <i class="fas fa-check text-green-500 mr-2"></i>
+                      <span>Maintain eye contact</span>
+                    </li>
+                    <li class="flex items-center">
+                      <i class="fas fa-check text-green-500 mr-2"></i>
+                      <span>Show empathy</span>
+                    </li>
+                    <li class="flex items-center">
+                      <i class="fas fa-check text-green-500 mr-2"></i>
+                      <span>Ask clarifying questions</span>
+                    </li>
+                    <li class="flex items-center">
+                      <i class="fas fa-check text-green-500 mr-2"></i>
+                      <span>Avoid interrupting</span>
+                    </li>
+                  </ul>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg">
+                  <h3 class="text-xl font-semibold mb-4">Practice Exercises</h3>
+                  <ul class="space-y-3">
+                    <li class="flex items-center">
+                      <i class="fas fa-check text-green-500 mr-2"></i>
+                      <span>Role-playing scenarios</span>
+                    </li>
+                    <li class="flex items-center">
+                      <i class="fas fa-check text-green-500 mr-2"></i>
+                      <span>Reflection exercises</span>
+                    </li>
+                    <li class="flex items-center">
+                      <i class="fas fa-check text-green-500 mr-2"></i>
+                      <span>Group discussions</span>
+                    </li>
+                    <li class="flex items-center">
+                      <i class="fas fa-check text-green-500 mr-2"></i>
+                      <span>Feedback sessions</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Allyship Pillars Section -->
+      <section class="mb-16" data-aos="fade-up">
+        <h2 class="text-3xl font-bold text-gray-800 mb-10 text-center">
+          Allyship Pillars
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Inclusive Communication -->
+          <div
+            class="bg-white rounded-xl shadow-lg p-8 flex flex-col items-center"
+          >
+            <div
+              class="w-16 h-16 rounded-full bg-indigo-100 flex items-center justify-center mb-4"
+            >
+              <i class="fas fa-comments text-3xl text-indigo-600"></i>
+            </div>
+            <h3 class="text-xl font-bold text-indigo-700 mb-2">
+              Inclusive Communication
+            </h3>
+            <ul class="text-gray-700 text-left space-y-3">
+              <li>
+                <strong>Use Respectful Language:</strong> Choose words that
+                affirm and respect everyone’s identity and background.
+              </li>
+              <li>
+                <strong>Practice Active Listening:</strong> Listen without
+                interrupting and validate others’ experiences.
+              </li>
+              <li>
+                <strong>Encourage Participation:</strong> Invite quieter voices
+                to share and ensure all perspectives are heard.
+              </li>
+              <li>
+                <strong>Avoid Assumptions:</strong> Don’t make judgments based
+                on stereotypes or incomplete information.
+              </li>
+            </ul>
+          </div>
+          <!-- Support Strategies -->
+          <div
+            class="bg-white rounded-xl shadow-lg p-8 flex flex-col items-center"
+          >
+            <div
+              class="w-16 h-16 rounded-full bg-blue-100 flex items-center justify-center mb-4"
+            >
+              <i class="fas fa-hands-helping text-3xl text-blue-600"></i>
+            </div>
+            <h3 class="text-xl font-bold text-blue-700 mb-2">
+              Support Strategies
+            </h3>
+            <ul class="text-gray-700 text-left space-y-3">
+              <li>
+                <strong>Stand Up Against Bias:</strong> Address inappropriate
+                comments or actions respectfully and promptly.
+              </li>
+              <li>
+                <strong>Offer Mentorship:</strong> Support colleagues’ growth by
+                sharing knowledge and opportunities.
+              </li>
+              <li>
+                <strong>Create Safe Spaces:</strong> Foster environments where
+                everyone feels comfortable expressing themselves.
+              </li>
+              <li>
+                <strong>Be Approachable:</strong> Let others know you are
+                available for support and open conversations.
+              </li>
+            </ul>
+          </div>
+          <!-- Action Steps -->
+          <div
+            class="bg-white rounded-xl shadow-lg p-8 flex flex-col items-center"
+          >
+            <div
+              class="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mb-4"
+            >
+              <i class="fas fa-tasks text-3xl text-green-600"></i>
+            </div>
+            <h3 class="text-xl font-bold text-green-700 mb-2">Action Steps</h3>
+            <ul class="text-gray-700 text-left space-y-3">
+              <li>
+                <strong>Set Personal Goals:</strong> Identify specific ways you
+                can support inclusion and equity.
+              </li>
+              <li>
+                <strong>Track Your Progress:</strong> Reflect regularly on your
+                actions and their impact.
+              </li>
+              <li>
+                <strong>Seek Feedback:</strong> Ask for input from others to
+                improve your allyship.
+              </li>
+              <li>
+                <strong>Commit to Learning:</strong> Stay informed about
+                diversity, equity, and inclusion topics.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Interactive Scenarios -->
+      <section class="mb-16" data-aos="fade-up">
+        <div class="bg-white rounded-xl shadow-md p-8">
+          <h2 class="text-3xl font-bold text-gray-800 mb-6">
+            Practice Scenarios
+          </h2>
+          <div id="scenarios-container" class="space-y-6">
+            <!-- Scenarios will be dynamically loaded here -->
+          </div>
+          <button
+            id="next-scenario"
+            class="mt-6 px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
+          >
+            Next Scenario
+          </button>
+        </div>
+      </section>
+
+      <!-- Resources Section -->
+      <section class="mb-16" data-aos="fade-up">
+        <div class="bg-white rounded-xl shadow-md p-8">
+          <h2 class="text-3xl font-bold text-gray-800 mb-6">
+            Learning Resources
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <a
+              href="#"
+              class="block p-6 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+            >
+              <i class="fas fa-book text-3xl text-purple-600 mb-4"></i>
+              <h3 class="text-xl font-semibold mb-2">Guide Books</h3>
+              <p class="text-gray-600">
+                Comprehensive guides for effective allyship
+              </p>
+            </a>
+            <a
+              href="#"
+              class="block p-6 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+            >
+              <i class="fas fa-video text-3xl text-indigo-600 mb-4"></i>
+              <h3 class="text-xl font-semibold mb-2">Video Workshops</h3>
+              <p class="text-gray-600">
+                Interactive video content for learning
+              </p>
+            </a>
+            <a
+              href="#"
+              class="block p-6 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+            >
+              <i class="fas fa-users text-3xl text-blue-600 mb-4"></i>
+              <h3 class="text-xl font-semibold mb-2">Community Forums</h3>
+              <p class="text-gray-600">
+                Connect with other allies and share experiences
+              </p>
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div>
+            <h3 class="text-xl font-bold mb-4">ParityPoint</h3>
+            <p class="text-gray-400">
+              Empowering workplace equity and inclusion through education and
+              action.
+            </p>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+            <ul class="space-y-2">
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white">Home</a>
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white">Tools</a>
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white">Resources</a>
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white">Contact</a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold mb-4">Connect With Us</h3>
+            <div class="flex space-x-4">
+              <a href="#" class="text-gray-400 hover:text-white"
+                ><i class="fab fa-facebook"></i
+              ></a>
+              <a href="#" class="text-gray-400 hover:text-white"
+                ><i class="fab fa-twitter"></i
+              ></a>
+              <a href="#" class="text-gray-400 hover:text-white"
+                ><i class="fab fa-linkedin"></i
+              ></a>
+              <a href="#" class="text-gray-400 hover:text-white"
+                ><i class="fab fa-instagram"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+        <div
+          class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400"
+        >
+          <p>&copy; 2024 ParityPoint. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Initialize AOS -->
+    <script>
+      AOS.init({
+        duration: 800,
+        once: true,
+      });
+
+      // Scenarios functionality
+      const scenarios = [
+        {
+          situation:
+            "A colleague makes an insensitive comment during a meeting. How do you respond?",
+          options: [
+            "Ignore it to avoid conflict",
+            "Address it privately after the meeting",
+            "Call it out immediately in front of everyone",
+            "Report it to HR without speaking to anyone",
+          ],
+          correct: 1,
+          explanation:
+            "Addressing it privately allows for a constructive conversation while maintaining professionalism.",
+        },
+        {
+          situation:
+            "You notice a pattern of exclusion in team activities. What's your first step?",
+          options: [
+            "Organize an inclusive team event",
+            "Document the pattern and discuss with affected colleagues",
+            "Report directly to management",
+            "Wait for others to notice",
+          ],
+          correct: 1,
+          explanation:
+            "Documenting and discussing with affected colleagues helps understand the full scope of the issue.",
+        },
+      ];
+
+      let currentScenario = 0;
+      const scenariosContainer = document.getElementById("scenarios-container");
+
+      function displayScenario(index) {
+        const scenario = scenarios[index];
+        scenariosContainer.innerHTML = `
+                <div class="bg-gray-50 p-6 rounded-lg">
+                    <h3 class="text-lg font-semibold mb-4">${
+                      scenario.situation
+                    }</h3>
+                    <div class="space-y-2">
+                        ${scenario.options
+                          .map(
+                            (opt, i) => `
+                            <label class="flex items-center">
+                                <input type="radio" name="scenario" value="${i}" class="mr-2">
+                                ${opt}
+                            </label>
+                        `
+                          )
+                          .join("")}
+                    </div>
+                    <div id="explanation" class="mt-4 text-green-600 hidden"></div>
+                </div>
+            `;
+      }
+
+      displayScenario(currentScenario);
+
+      document.getElementById("next-scenario").addEventListener("click", () => {
+        const selected = document.querySelector(
+          'input[name="scenario"]:checked'
+        );
+        if (selected) {
+          const explanation = document.getElementById("explanation");
+          explanation.textContent = scenarios[currentScenario].explanation;
+          explanation.classList.remove("hidden");
+
+          setTimeout(() => {
+            currentScenario = (currentScenario + 1) % scenarios.length;
+            displayScenario(currentScenario);
+          }, 2000);
+        } else {
+          alert("Please select an option first");
+        }
+      });
+
+      // Mobile menu toggle
+      document.getElementById("hamburger").addEventListener("click", () => {
+        document.getElementById("nav-list").classList.toggle("active");
+      });
+    </script>
+  </body>
+</html>

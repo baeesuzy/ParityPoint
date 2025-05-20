@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Intersectionality Spotlight - ParityPoint</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <style>
+      .hero-section {
+        position: relative;
+        /* Remove or comment out the z-index here */
+        /* z-index: 1; */
+      }
+
+      .background-pattern {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjZmZmIj48L3JlY3Q+CjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiNmMGYwZjAiPjwvcmVjdD4KPC9zdmc+");
+        opacity: 0.1;
+        z-index: -1;
+      }
+
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.5rem 0;
+      }
+
+      .logo-text {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: #4f46e5;
+      }
+
+      .nav-list {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+      }
+
+      .nav-link {
+        color: #374151;
+        font-weight: 500;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      .nav-link:hover,
+      .nav-link.active {
+        color: #4f46e5;
+      }
+
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+        background: none;
+        border: none;
+      }
+
+      .hamburger span {
+        width: 25px;
+        height: 3px;
+        background-color: #4f46e5;
+        margin: 2px 0;
+        transition: 0.3s;
+      }
+
+      @media (max-width: 768px) {
+        .hamburger {
+          display: flex;
+          z-index: 100; /* Higher than nav-list */
+        }
+
+        .nav-list {
+          display: flex;
+          flex-direction: column;
+          position: fixed;
+          top: 0;
+          right: 0;
+          width: 80vw;
+          height: 100vh;
+          background: rgba(255, 255, 255, 0.97);
+          padding: 5rem 2rem;
+          box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+          z-index: 99; /* Make sure this is higher than anything else */
+          transition: transform 0.3s ease;
+          transform: translateX(100%);
+          pointer-events: none;
+        }
+
+        .nav-list.active {
+          transform: translateX(0);
+          pointer-events: auto;
+        }
+
+        .nav-link {
+          color: #374151;
+          font-weight: 500;
+          text-decoration: none;
+          margin-bottom: 1.5rem;
+          transition: color 0.3s;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+          color: #4f46e5;
+        }
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+      }
+
+      .story-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .story-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .identity-tag {
+        display: inline-block;
+        padding: 0.25rem 0.75rem;
+        border-radius: 9999px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        margin-right: 0.5rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .identity-tag.gender {
+        background-color: #fce7f3;
+        color: #be185d;
+      }
+
+      .identity-tag.race {
+        background-color: #e0f2fe;
+        color: #0369a1;
+      }
+
+      .identity-tag.disability {
+        background-color: #fef3c7;
+        color: #92400e;
+      }
+
+      .identity-tag.lgbtq {
+        background-color: #dcfce7;
+        color: #166534;
+      }
+
+      .intersection-line {
+        position: relative;
+        padding-left: 2rem;
+      }
+
+      .intersection-line::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: linear-gradient(to bottom, #8b5cf6, #ec4899);
+        border-radius: 1px;
+      }
+    </style>
+  </head>
+  <nav>
+    <div class="hero-section">
+      <div class="background-pattern"></div>
+      <div class="container">
+        <div class="header">
+          <div class="logo">
+            <span class="logo-text">ParityPoint</span>
+          </div>
+          <button class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+          <nav>
+            <ul class="nav-list" id="nav-list">
+              <li class="nav-item">
+                <a href="#" class="nav-link">HOME</a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link active">TOPICS</a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">REFERENCES</a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">ABOUT US</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <body class="bg-gray-50">
+    <!-- Navigation -->
+
+    <!-- Hero Section -->
+    <div
+      class="relative bg-gradient-to-r from-fuchsia-600 to-purple-600 py-32 md:py-48 overflow-hidden"
+    >
+      <div class="absolute inset-0">
+        <img
+          src="https://source.unsplash.com/1600x900/?diversity,teamwork"
+          class="w-full h-full object-cover opacity-20"
+        />
+      </div>
+      <div class="container mx-auto px-4 relative z-10">
+        <div class="text-center" data-aos="fade-up">
+          <h1
+            class="text-6xl md:text-7xl font-extrabold text-white mb-8 leading-tight"
+          >
+            Spotlight on Intersectionality
+          </h1>
+          <p
+            class="text-2xl md:text-3xl text-fuchsia-100 max-w-4xl mx-auto mb-12"
+          >
+            Discover how overlapping identities shape workplace experiences and
+            drive inclusion.
+          </p>
+          <div class="flex justify-center space-x-6">
+            <a
+              href="#"
+              class="px-10 py-4 bg-white text-fuchsia-600 font-bold rounded-lg shadow-lg hover:bg-fuchsia-50 transition-colors"
+            >
+              Learn More
+            </a>
+            <a
+              href="#"
+              class="px-10 py-4 bg-fuchsia-700 text-white font-bold rounded-lg shadow-lg hover:bg-fuchsia-800 transition-colors"
+            >
+              Get Involved
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="absolute bottom-0 left-0 right-0">
+        <svg
+          class="w-full h-16 text-white"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1440 320"
+        >
+          <path
+            fill="currentColor"
+            fill-opacity="1"
+            d="M0,224L48,213.3C96,203,192,181,288,186.7C384,192,480,224,576,240C672,256,768,256,864,240C960,224,1056,192,1152,165.3C1248,139,1344,117,1392,106.7L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+          ></path>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-16">
+      <!-- Understanding Intersectionality -->
+      <div class="mb-16" data-aos="fade-up">
+        <div class="bg-white rounded-xl shadow-md p-8">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div>
+              <h2 class="text-3xl font-bold text-gray-800 mb-6">
+                Understanding Intersectionality
+              </h2>
+              <p class="text-lg text-gray-600 mb-6">
+                Intersectionality recognizes that people's experiences are
+                shaped by multiple, overlapping identities. In the workplace,
+                this means understanding how factors like gender, race,
+                disability, sexual orientation, and socioeconomic background
+                interact to create unique challenges and opportunities.
+              </p>
+              <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="text-center p-4 bg-fuchsia-50 rounded-lg">
+                  <i
+                    class="fas fa-venus-mars text-2xl text-fuchsia-600 mb-2"
+                  ></i>
+                  <p class="text-sm text-gray-600">Gender</p>
+                </div>
+                <div class="text-center p-4 bg-purple-50 rounded-lg">
+                  <i class="fas fa-globe text-2xl text-purple-600 mb-2"></i>
+                  <p class="text-sm text-gray-600">Race & Ethnicity</p>
+                </div>
+                <div class="text-center p-4 bg-pink-50 rounded-lg">
+                  <i class="fas fa-wheelchair text-2xl text-pink-600 mb-2"></i>
+                  <p class="text-sm text-gray-600">Disability</p>
+                </div>
+                <div class="text-center p-4 bg-indigo-50 rounded-lg">
+                  <i class="fas fa-heart text-2xl text-indigo-600 mb-2"></i>
+                  <p class="text-sm text-gray-600">LGBTQ+</p>
+                </div>
+              </div>
+            </div>
+            <div>
+              <img
+                src="https://www.eurodoc.net/sites/default/files/styles/content-image-790/public/news/2024/02/17/lauchpicture.jpg?itok=DvDAHLCJ"
+                alt="Intersectionality Illustration"
+                class="w-full h-auto rounded-lg"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Featured Stories -->
+      <div class="mb-16" data-aos="fade-up">
+        <h2 class="text-3xl font-bold text-gray-800 mb-8">Featured Stories</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="story-card bg-white rounded-xl shadow-md p-6">
+            <div class="flex items-center mb-4">
+              <img
+                src="https://www.humanrights.vic.gov.au/static/ce51ef02694a444e61e9db173ca7bb7e/c6d22/IMG-Story-Content-Ada.webp"
+                alt="Ada"
+                class="w-12 h-12 rounded-full mr-4"
+              />
+              <div>
+                <h3 class="text-xl font-bold text-gray-800">Ada</h3>
+                <p class="text-gray-600">Local Council Worker</p>
+              </div>
+            </div>
+            <div class="mb-4">
+              <span class="identity-tag gender">Woman</span>
+              <span class="identity-tag race">Aussie</span>
+              <span class="identity-tag disability">LGBTQ</span>
+            </div>
+            <p class="text-gray-600 mb-4">
+              "I work in customer service for a local council, and 90 per cent
+              of the customers don’t even bat an eyelid at me being a trans
+              woman. I wish I could say the same for all my colleagues."
+            </p>
+            <a
+              href="https://www.humanrights.vic.gov.au/get-help/stories/adas-story/"
+              class="text-fuchsia-600 font-semibold hover:text-fuchsia-700"
+            >
+              Read Full Story <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+          </div>
+          <div class="story-card bg-white rounded-xl shadow-md p-6">
+            <div class="flex items-center mb-4">
+              <img
+                src="https://images.storychief.com/account_34489/caelan-frary_2d4018df5f2b75c8bc10ab507490b0d1_800.jpeg"
+                alt="Caelan"
+                class="w-12 h-12 rounded-full mr-4"
+              />
+              <div>
+                <h3 class="text-xl font-bold text-gray-800">Caelan</h3>
+                <p class="text-gray-600">Marketing Director</p>
+              </div>
+            </div>
+            <div class="mb-4">
+              <span class="identity-tag race">White</span>
+              <span class="identity-tag lgbtq">Gay</span>
+              <span class="identity-tag disability">LGBTQ</span>
+            </div>
+            <p class="text-gray-600 mb-4">
+              "I had been working at the NHS for a number of years. I was also
+              the Chair of the LGBTQ+ network at the hospital trust. That really
+              helped me because I knew who to talk to or who I could ask
+              straight away. My experience would have been very different if I
+              hadn’t worked with them."
+            </p>
+            <a
+              href="https://www.gendergp.com/transitioning-at-work-gendergp-team-members/"
+              class="text-fuchsia-600 font-semibold hover:text-fuchsia-700"
+            >
+              Read Full Story <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Research Insights -->
+      <div class="mb-16" data-aos="fade-up">
+        <h2 class="text-3xl font-bold text-gray-800 mb-8">Research Insights</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="intersection-line bg-white rounded-xl shadow-md p-6">
+            <h3 class="text-xl font-bold text-gray-800 mb-3">
+              Career Advancement
+            </h3>
+            <p class="text-gray-600">
+              Research shows that women of color face unique barriers in career
+              progression, with intersectional identities often leading to
+              compounded challenges.
+            </p>
+            <a
+              href="https://www.nature.com/articles/s41598-023-50392-x"
+              class="text-fuchsia-600 font-semibold hover:text-fuchsia-700 mt-4 inline-block"
+            >
+              Read More <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+          </div>
+          <div class="intersection-line bg-white rounded-xl shadow-md p-6">
+            <h3 class="text-xl font-bold text-gray-800 mb-3">
+              Workplace Culture
+            </h3>
+            <p class="text-gray-600">
+              Organizations with inclusive cultures that address intersectional
+              needs see higher employee satisfaction and retention rates.
+            </p>
+            <a
+              href="https://pearnkandola.com/insights/intersectionality-in-your-dei-strategy-building-inclusive-and-equitable-workplaces/"
+              class="text-fuchsia-600 font-semibold hover:text-fuchsia-700 mt-4 inline-block"
+            >
+              Read More <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+          </div>
+          <div class="intersection-line bg-white rounded-xl shadow-md p-6">
+            <h3 class="text-xl font-bold text-gray-800 mb-3">
+              Leadership Impact
+            </h3>
+            <p class="text-gray-600">
+              Diverse leadership teams that understand intersectionality make
+              better decisions and drive more innovative solutions.
+            </p>
+            <a
+              href="https://journals.sagepub.com/doi/10.1177/15480518241292214?icid=int.sj-abstract.citing-articles.1"
+              class="text-fuchsia-600 font-semibold hover:text-fuchsia-700 mt-4 inline-block"
+            >
+              Read More <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Resources & Tools -->
+      <div class="mb-16" data-aos="fade-up">
+        <h2 class="text-3xl font-bold text-gray-800 mb-8">Resources & Tools</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="bg-white rounded-xl shadow-md p-6">
+            <div class="flex items-center mb-4">
+              <div
+                class="w-12 h-12 bg-fuchsia-100 rounded-lg flex items-center justify-center mr-4"
+              >
+                <i class="fas fa-book text-fuchsia-600 text-xl"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-gray-800">
+                  Intersectionality Guide
+                </h3>
+                <p class="text-gray-600">
+                  Comprehensive resource for understanding and implementing
+                  intersectional approaches
+                </p>
+              </div>
+            </div>
+            <a
+              href="#"
+              class="text-fuchsia-600 font-semibold hover:text-fuchsia-700"
+            >
+              Download Guide <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+          </div>
+          <div class="bg-white rounded-xl shadow-md p-6">
+            <div class="flex items-center mb-4">
+              <div
+                class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mr-4"
+              >
+                <i class="fas fa-chart-bar text-purple-600 text-xl"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-gray-800">Assessment Tool</h3>
+                <p class="text-gray-600">
+                  Evaluate your organization's intersectional practices and
+                  identify areas for improvement
+                </p>
+              </div>
+            </div>
+            <a
+              href="#"
+              class="text-purple-600 font-semibold hover:text-purple-700"
+            >
+              Try Tool <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Share Your Story -->
+      <div class="mb-16" data-aos="fade-up">
+        <div
+          class="bg-gradient-to-r from-fuchsia-500 to-purple-500 rounded-xl shadow-md p-8 text-white"
+        >
+          <div class="max-w-3xl mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-4">Share Your Story</h2>
+            <p class="text-xl mb-8">
+              Your experiences matter. Share your intersectional journey to
+              inspire others and drive change.
+            </p>
+            <a
+              href="#"
+              class="inline-block px-8 py-3 bg-white text-fuchsia-600 font-bold rounded-lg hover:bg-fuchsia-50 transition-colors"
+            >
+              Submit Your Story
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div>
+            <h3 class="text-xl font-bold mb-4">ParityPoint</h3>
+            <p class="text-gray-400">
+              Empowering workplace equity and inclusion through education and
+              action.
+            </p>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+            <ul class="space-y-2">
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white">Home</a>
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white">Topics</a>
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white">Resources</a>
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white">Contact</a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold mb-4">Connect With Us</h3>
+            <div class="flex space-x-4">
+              <a href="#" class="text-gray-400 hover:text-white"
+                ><i class="fab fa-facebook"></i
+              ></a>
+              <a href="#" class="text-gray-400 hover:text-white"
+                ><i class="fab fa-twitter"></i
+              ></a>
+              <a href="#" class="text-gray-400 hover:text-white"
+                ><i class="fab fa-linkedin"></i
+              ></a>
+              <a href="#" class="text-gray-400 hover:text-white"
+                ><i class="fab fa-instagram"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+        <div
+          class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400"
+        >
+          <p>&copy; 2024 ParityPoint. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Initialize AOS -->
+    <script>
+      AOS.init({
+        duration: 800,
+        once: true,
+      });
+
+      // Mobile menu toggle
+      document.getElementById("hamburger").addEventListener("click", () => {
+        document.getElementById("nav-list").classList.toggle("active");
+      });
+    </script>
+  </body>
+</html>
