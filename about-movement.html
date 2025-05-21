@@ -52,7 +52,7 @@
       .logo-text {
         font-size: 1.8rem;
         font-weight: bold;
-        color: #4f46e5;
+        color: #6e11b0;
       }
 
       .nav-list {
@@ -70,7 +70,7 @@
 
       .nav-link:hover,
       .nav-link.active {
-        color: #4f46e5; /* Changed active color to violet */
+        color: #6e11b0;
       }
 
       .hamburger {
@@ -181,7 +181,7 @@
 
       .member-photo {
         width: 100%;
-        height: 250px;
+        height: 16rem;
         object-fit: cover;
         display: block;
       }
@@ -210,23 +210,23 @@
 
       /* Role color variations */
       .title-ceo {
-        color: #8b5cf6;
+        color: #6e11b0;
       }
 
       .title-programs {
-        color: #6366f1;
+        color: #6e11b0;
       }
 
       .title-research {
-        color: #8b5cf6;
+        color: #6e11b0;
       }
 
       .title-outreach {
-        color: #ec4899;
+        color: #6e11b0;
       }
 
       .title-tech {
-        color: #3b82f6;
+        color: #6e11b0;
       }
 
       /* Custom arrows for carousel */
@@ -328,7 +328,7 @@
                 <a href="topics.html" class="nav-link active">TOPICS</a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">REFERENCES</a>
+                <a href="references.html" class="nav-link">REFERENCES</a>
               </li>
               <li class="nav-item">
                 <a href="about-movement.html" class="nav-link">ABOUT US</a>
@@ -363,8 +363,8 @@
           workplaces into modern hubs of equity.
         </p>
         <a
-          href="#"
-          class="inline-block bg-white text-purple-700 font-bold py-4 px-8 rounded-full transition duration-300 ease-in-out transform hover:scale-105 hover:bg-purple-50"
+          href="#ourmission"
+          class="inline-block bg-gradient-to-r from-violet-600 to-green-400 text-slate-300  text-slate-300 font-bold py-4 px-8 rounded-full transition duration-300 ease-in-out transform hover:scale-105 hover:bg-purple-50"
         >
           Get Started
         </a>
@@ -374,7 +374,7 @@
     <!-- Main Content -->
     <div class="container mx-auto px-4 py-16">
       <!-- Our Mission -->
-      <div class="mb-16" data-aos="fade-up">
+      <div class="mb-16" data-aos="fade-up" id = "ourmission">
         <div class="bg-white rounded-xl shadow-md p-8">
           <div class="max-w-3xl mx-auto text-center">
             <h2 class="text-3xl font-bold text-gray-800 mb-6">Our Mission</h2>
@@ -403,40 +403,9 @@
         </div>
       </div>
 
-      <!-- Modal for Our Mission -->
-      <div
-        id="missionModal"
-        class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden"
-      >
-        <div
-          class="bg-white rounded-lg shadow-lg max-w-2xl w-full p-6 relative"
-        >
-          <button
-            id="closeModal"
-            class="absolute top-2 right-2 text-gray-600 hover:text-gray-800 text-3xl"
-          >
-            &times;
-          </button>
-          <h3 class="text-2xl font-bold text-gray-800 mb-4">
-            More About Our Mission
-          </h3>
-          <p class="text-gray-700 mb-4">
-            Our mission is to transform workplaces into environments where
-            diversity, inclusion, and equity become the norm. We believe in
-            empowering every individual through comprehensive training,
-            innovative advocacy, and robust strategic partnerships.
-          </p>
-          <p class="text-gray-700">
-            With a focus on sustainable change, our initiatives break down
-            traditional barriers and foster cultures where every voice is heard.
-            Join us as we work together to reshape the future of work—one
-            organization at a time.
-          </p>
-        </div>
-      </div>
 
       <!-- Our Values -->
-      <div class="mb-16" data-aos="fade-up">
+      <div class="mb-16" data-aos="fade-up" id = "values1">
         <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">
           Our Values
         </h2>
@@ -513,7 +482,7 @@
         <!-- Team Member 1 -->
         <div class="team-member">
           <div class="member-card">
-            <img src="?" alt="prime wisteria" class="member-photo" />
+            <img src="img/prime2.jpg" alt="prime wisteria" class="member-photo" />
             <div class="member-info">
               <h3 class="member-name">Prime Borres</h3>
               <p class="member-title title-ceo">Developer|Researcher</p>
@@ -530,7 +499,7 @@
         <!-- Team Member 2 -->
         <div class="team-member">
           <div class="member-card">
-            <img src="?" alt="Harold Maturan" class="member-photo" />
+            <img src="img/maturan.jpg" alt="Harold Maturan" class="member-photo" />
             <div class="member-info">
               <h3 class="member-name">Harold Maturan</h3>
               <p class="member-title title-programs">Developer|Researcher</p>
@@ -547,7 +516,7 @@
         <!-- Team Member 3 -->
         <div class="team-member">
           <div class="member-card">
-            <img src="?" alt="Edmund Sarco" class="member-photo" />
+            <img src="img/sarco.jpg" alt="Edmund Sarco" class="member-photo" />
             <div class="member-info">
               <h3 class="member-name">Edmund Sarco</h3>
               <p class="member-title title-research">
@@ -566,7 +535,7 @@
         <!-- Team Member 4 -->
         <div class="team-member">
           <div class="member-card">
-            <img src="?" alt="Rafinian" class="member-photo" />
+            <img src="img/raffy.jpg" alt="Rafinian" class="member-photo" />
             <div class="member-info">
               <h3 class="member-name">Jun Andre Rafinian</h3>
               <p class="member-title title-outreach">RESEARCHER</p>
@@ -583,7 +552,7 @@
         <!-- Team Member 5 -->
         <div class="team-member">
           <div class="member-card">
-            <img src="?" alt="khan" class="member-photo" />
+            <img src="img/orga.jpg" alt="khan" class="member-photo" />
             <div class="member-info">
               <h3 class="member-name">Khan Orga</h3>
               <p class="member-title title-tech">UI Designer|Researcher</p>
@@ -600,7 +569,7 @@
         <!-- Team Member 6 -->
         <div class="team-member">
           <div class="member-card">
-            <img src="?" alt="Keith" class="member-photo" />
+            <img src="img/gabatin.jpg" alt="Keith" class="member-photo" />
             <div class="member-info">
               <h3 class="member-name">Keith Gabatin</h3>
               <p class="member-title title-programs">UI Designer|Researcher</p>
@@ -620,7 +589,7 @@
         <!-- Team Member 7 -->
         <div class="team-member">
           <div class="member-card">
-            <img src="Zyrou" alt="Zyrou" class="member-photo" />
+            <img src="img/zyrou.jpg" alt="Zyrou" class="member-photo" />
             <div class="member-info">
               <h3 class="member-name">Zyrou Juntillia</h3>
               <p class="member-title title-research">
@@ -639,7 +608,7 @@
         <!-- Team Member 8 -->
         <div class="team-member">
           <div class="member-card">
-            <img src="?" alt="Gian" class="member-photo" />
+            <img src="img/gian.jpg" alt="Gian" class="member-photo" />
             <div class="member-info">
               <h3 class="member-name">Gian Villarante</h3>
               <p class="member-title title-outreach">Designer|Researcher</p>
@@ -656,7 +625,7 @@
         <!-- Team Member 9 -->
         <div class="team-member">
           <div class="member-card">
-            <img src="?" alt="Ang" class="member-photo" />
+            <img src="img/ang.jpg" alt="Ang" class="member-photo" />
             <div class="member-info">
               <h3 class="member-name">Gabrielle Ang</h3>
               <p class="member-title title-programs">Researcher</p>
@@ -673,7 +642,7 @@
         <!-- Team Member 10 -->
         <div class="team-member">
           <div class="member-card">
-            <img src="dawal" alt="dawal" class="member-photo" />
+            <img src="img/dawal.jpg" alt="dawal" class="member-photo" />
             <div class="member-info">
               <h3 class="member-name">FILBERT DAWAL</h3>
               <p class="member-title title-tech">
@@ -690,7 +659,37 @@
         </div>
       </div>
     </div>
-
+      <!-- Modal for Our Mission -->
+      <div
+        id="missionModal"
+        class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden"
+      >
+        <div
+          class="bg-white rounded-lg shadow-lg max-w-2xl w-full p-6 relative"
+        >
+          <button
+            id="closeModal"
+            class="absolute top-2 right-2 text-gray-600 hover:text-gray-800 text-3xl"
+          >
+            &times;
+          </button>
+          <h3 class="text-2xl font-bold text-gray-800 mb-4">
+            More About Our Mission
+          </h3>
+          <p class="text-gray-700 mb-4">
+            Our mission is to transform workplaces into environments where
+            diversity, inclusion, and equity become the norm. We believe in
+            empowering every individual through comprehensive training,
+            innovative advocacy, and robust strategic partnerships.
+          </p>
+          <p class="text-gray-700">
+            With a focus on sustainable change, our initiatives break down
+            traditional barriers and foster cultures where every voice is heard.
+            Join us as we work together to reshape the future of work—one
+            organization at a time.
+          </p>
+        </div>
+      </div>
 
     <!-- Footer -->
     <footer class="bg-gray-800 text-white py-12">
@@ -707,16 +706,16 @@
             <h3 class="text-xl font-bold mb-4">Quick Links</h3>
             <ul class="space-y-2">
               <li>
-                <a href="#" class="text-gray-400 hover:text-white">Home</a>
+                <a href="index.html" class="text-gray-400 hover:text-white">Home</a>
               </li>
               <li>
-                <a href="#" class="text-gray-400 hover:text-white">Topics</a>
+                <a href="topics.html" class="text-gray-400 hover:text-white">Topics</a>
               </li>
               <li>
-                <a href="#" class="text-gray-400 hover:text-white">Resources</a>
+                <a href="references.html" class="text-gray-400 hover:text-white">Reference</a>
               </li>
               <li>
-                <a href="#" class="text-gray-400 hover:text-white">Contact</a>
+                <a href="About us" class="text-gray-400 hover:text-white">About Us</a>
               </li>
             </ul>
           </div>
@@ -756,16 +755,19 @@
       // Mobile menu toggle
       document.getElementById("hamburger").addEventListener("click", () => {
         document.getElementById("nav-list").classList.toggle("active");
+      
       });
 
       // Modal Toggle Script for "Learn More"
       const learnMoreBtn = document.getElementById("learnMoreBtn");
       const missionModal = document.getElementById("missionModal");
+    
       const closeModal = document.getElementById("closeModal");
 
       learnMoreBtn.addEventListener("click", (e) => {
         e.preventDefault();
         missionModal.classList.remove("hidden");
+        missionModal.classList.add("display-block");
       });
 
       closeModal.addEventListener("click", () => {

@@ -68,7 +68,7 @@ body {
   font-size: 1.8rem;
   font-weight: 700;
   margin-left: 10px;
-  color: #4f46e5;
+  color: #6e11b0;
 }
 
 nav {
@@ -102,7 +102,7 @@ nav {
   position: absolute;
   width: 0;
   height: 2px;
-  background-color: #4f46e5;
+  background-color: #6e11b0;
   bottom: 0;
   left: 0;
   transition: width 0.3s ease;
@@ -114,7 +114,7 @@ nav {
 }
 
 .nav-link.active {
-  color: #4f46e5;
+  color: #6e11b0;
 }
 
 .hamburger {
@@ -164,8 +164,8 @@ nav {
 .cta-button {
   display: inline-block;
   padding: 12px 30px;
-  background: linear-gradient(135deg, #ffd700 0%, #ffc107 100%);
-  color: #333;
+  background: linear-gradient(135deg, #6C48C5 0%, #7AE2CF 100%);
+  color: #cbd5e1;
   text-decoration: none;
   font-weight: 700;
   border-radius: 50px;
@@ -535,5 +535,6 @@ nav {
 
   .logo-text {
     font-size: 1.5rem;
+    color : #6e11b0;
   }
 }

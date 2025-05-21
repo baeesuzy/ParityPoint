@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Global Perspectives - ParityPoint</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <style>
+      .hero-section {
+        position: relative;
+      }
+
+      .background-pattern {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjZmZmIj48L3JlY3Q+CjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiNmMGYwZjAiPjwvcmVjdD4KPC9zdmc+");
+        opacity: 0.1;
+        z-index: -1;
+      }
+
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.5rem 0;
+      }
+
+      .logo-text {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color:  #6e11b0;
+      }
+
+      .nav-list {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+      }
+
+      .nav-link {
+        color: #374151;
+        font-weight: 500;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      .nav-link:hover,
+      .nav-link.active {
+        color: #6e11b0;
+      }
+
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+        background: none;
+        border: none;
+      }
+
+      .hamburger span {
+        width: 25px;
+        height: 3px;
+        background-color: #4f46e5;
+        margin: 2px 0;
+        transition: 0.3s;
+      }
+
+      @media (max-width: 768px) {
+        .hamburger {
+          display: flex;
+          z-index: 20;
+        }
+
+        .nav-list {
+          position: fixed;
+          top: 0;
+          right: -100%;
+          flex-direction: column;
+          width: 80%;
+          height: 100vh;
+          background-color: white;
+          padding: 5rem 2rem;
+          z-index: 10;
+          transition: right 0.3s ease;
+          box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-list.active {
+          color : #6e11b0;
+          right: 0;
+        }
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+      }
+
+      .region-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .region-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .global-stat {
+        position: relative;
+        padding-left: 1.5rem;
+      }
+
+      .global-stat::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 4px;
+        background: linear-gradient(to bottom, #0ea5e9, #2563eb);
+        border-radius: 2px;
+      }
+
+      .map-container {
+        position: relative;
+        height: 400px;
+        background: #f8fafc;
+        border-radius: 1rem;
+        overflow: hidden;
+      }
+
+      .map-container::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url("https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/BlankMap-World.svg/1280px-BlankMap-World.svg.png")
+          center/contain no-repeat;
+        opacity: 0.1;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50">
+    <!-- Navigation -->
+    <div class="hero-section">
+      <div class="background-pattern"></div>
+      <div class="container">
+        <div class="header">
+          <div class="logo">
+            <span class="logo-text">ParityPoint</span>
+          </div>
+          <button class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+          <nav>
+            <ul class="nav-list" id="nav-list">
+              <li class="nav-item"><a href="index.html" class="nav-link">HOME</a></li>
+              <li class="nav-item">
+                <a href="topics.html" class="nav-link">TOPICS</a>
+              </li>
+              <li class="nav-item">
+                <a href="ref.txt" class="nav-link active">REFERENCES</a>
+              </li>
+              <li class="nav-item">
+                <a href="about-movement.html" class="nav-link">ABOUT US</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero Section -->
+
+    <!-- Main Content -->
+     
+     
+        <div class="grid grid-cols-12 md:grid-cols-1 gap-8">
+        <h4 class="text-violet-600 text-xl font-bold mb-4 ml-5 mt-5 ">Reference</h4>
+       <h3 class="text-xl font-bold text-gray-800 mb-3">
+          <div class="story-card bg-white rounded-xl shadow-md p-8 relative">  
+            <a href="https://webapps.ilo.org/infostories/en-GB/Stories/Employment/barriers-women" target="_blank" rel="noopener noreferrer">International Labour Organization, 2022. The gender gap in employment: What’s holding women back?. International Labour Organisation.</a>
+            <a
+              href="https://webapps.ilo.org/infostories/en-GB/Stories/Employment/barriers-women"
+              class="text-green-600 font-semibold hover:text-pink-700"
+            >
+              Read Full Story <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+          </div>
+          <div class="story-card bg-white rounded-xl shadow-md p-8 relative">  
+            <a href="https://www.pewresearch.org/short-reads/2023/08/31/black-workers-views-and-experiences-in-the-us-labor-force-stand-out-in-key-ways/" target="_blank" rel="noopener noreferrer">Schaeffer, K., 2023. Black workers’ views and experiences in the US labor force stand out in key ways.</a>
+            <a
+              href="https://www.pewresearch.org/short-reads/2023/08/31/black-workers-views-and-experiences-in-the-us-labor-force-stand-out-in-key-ways/"
+              class="text-green-600 font-semibold hover:text-pink-700"
+            >
+              Read Full Story <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+          </div>
+          <div class="story-card bg-white rounded-xl shadow-md p-8 relative">  
+            <a href="https://www.epi.org/unequalpower/publications/understanding-black-white-disparities-in-labor-market-outcomes/" target="_blank" rel="noopener noreferrer">Wilson, V. and Darity Jr, W., 2022. Understanding black-white disparities in labor market outcomes requires models that account for persistent discrimination and unequal bargaining power.</a>
+            <a
+              href="https://www.epi.org/unequalpower/publications/understanding-black-white-disparities-in-labor-market-outcomes/"
+              class="text-green-600 font-semibold hover:text-pink-700"
+            >
+              Read Full Story <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+          </div>
+          
+        <div class="story-card bg-white rounded-xl shadow-md p-8 relative">
+            <a href="https://www.bls.gov/news.release/pdf/disabl.pdf" target="_blank" rel="noopener noreferrer">
+                Bureau of Labor Statistics, 2020. Persons with a disability: Labor force characteristics.</a>
+            <a
+                href="https://www.bls.gov/news.release/pdf/disabl.pdf   "
+                class="text-green-600 font-semibold hover:text-pink-700"
+            >
+                Read Full Story <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+        <div class="story-card bg-white rounded-xl shadow-md p-8 relative">
+            <a href="https://www.ncbi.nlm.nih.gov/books/NBK588538/" target="_blank" rel="noopener noreferrer">
+                National Academies Press (US); 2022.  Understanding the Aging Workforce: Defining a Research Agenda. Washington (DC).
+            </a>
+            <a
+            href="https://www.ncbi.nlm.nih.gov/books/NBK588538/"
+            class="text-green-600 font-semibold hover:text-pink-700"
+            >
+            Read Full Story <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+        <div class="story-card bg-white rounded-xl shadow-md p-8 relative">
+            <a href="https://www.olern.com/understanding-the-benefits-of-diversity-in-the-philippine-workforce/#:~:text=Enhanced%20Innovation%20and%20Creativity&text=Everyone%20brings%20their%20own%20experiences,19%25%20boost%20in%20innovation%20revenue." target="_blank" rel="noopener noreferrer"></a>
+Understanding the Benefits of Diversity in the Philippine Workforce
+            </a>
+            <a
+                href="https://www.olern.com/understanding-the-benefits-of-diversity-in-the-philippine-workforce/#:~:text=Enhanced%20Innovation%20and%20Creativity&text=Everyone%20brings%20their%20own%20experiences,19%25%20boost%20in%20innovation%20revenue."
+                class="text-green-600 font-semibold hover:text-pink-700"
+            >
+                Read Full Story <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+        <div class="story-card bg-white rounded-xl shadow-md p-8 relative">
+            <a href="https://newsinfo.inquirer.net/2047273/diversity-is-essential-to-genuine-meritocracy" target="_blank" rel="noopener noreferrer"></a>
+                Inquirer.net, 2023. Diversity is essential to genuine meritocracy.
+            </a>
+            <a
+                href="https://newsinfo.inquirer.net/2047273/diversity-is-essential-to-genuine-meritocracy"
+                class="text-green-600 font-semibold hover:text-pink-700"
+            >
+                Read Full Story <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+        <div class="story-card bg-white rounded-xl shadow-md p-8 relative">
+            <a href="https://www.globenewswire.com/news-release/2022/08/09/2494604/0/en/Diversity-and-Inclusion-D-I-Global-Market-Report-2022-Diverse-Companies-Earn-2-5-Times-Higher-Cash-Flow-Per-Employee-and-Inclusive-Teams-Are-More-Productive-by-Over-35.html" target="_blank" rel="noopener noreferrer"></a>
+            Diversity and Inclusion (D&I) Global Market Report 2022: Diverse Companies Earn 2.5 Times Higher Cash Flow Per Employee and Inclusive Teams Are More Productive by Over 35%.
+            </a>
+            <a
+                href="https://www.globenewswire.com/news-release/2022/08/09/2494604/0/en/Diversity-and-Inclusion-D-I-Global-Market-Report-2022-Diverse-Companies-Earn-2-5-Times-Higher-Cash-Flow-Per-Employee-and-Inclusive-Teams-Are-More-Productive-by-Over-35.html"
+                class="text-green-600 font-semibold hover:text-pink-700"
+            >
+                Read Full Story <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+        <div class="story-card bg-white rounded-xl shadow-md p-8 relative">
+            <a href="https://www.mckinsey.com/featured-insights/diversity-and-inclusion/diversity-matters-even-more-the-case-for-holistic-impact" target="_blank" rel="noopener noreferrer"></a>
+                McKinsey & Company, 2023. Diversity matters even more: The case for holistic impact.
+            </a>
+            <a
+                href="https://www.mckinsey.com/featured-insights/diversity-and-inclusion/diversity-matters-even-more-the-case-for-holistic-impact"
+                class="text-green-600 font-semibold hover:text-pink-700"
+            >
+                Read Full Story <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+        <div class="story-card bg-white rounded-xl shadow-md p-8 relative">
+            <a href="https://www.humanrights.vic.gov.au/get-help/stories/deborahs-story/" target="_blank" rel="noopener noreferrer"></a>
+                Human Rights Commission, 2023. Deborah's Story: A Journey of Resilience and Empowerment.
+            </a>
+            <a
+                href="https://www.humanrights.vic.gov.au/get-help/stories/deborahs-story/"
+                class="text-green-600 font-semibold hover:text-pink-700"
+            >
+                Read Full Story <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+        <div class="story-card bg-white rounded-xl shadow-md p-8 relative">
+            <a href="https://www.igi-global.com/chapter/the-impact-of-flexible-work-policies-on-employee-well-being-and-retention-in-modern-organizations/377941" target="_blank" rel="noopener noreferrer"></a>
+                Ishani Gupta and Ramji Nagariya, 2025. The Impact of Flexible Work Policies on Employee Well-Being and Retention in Modern Organizations.
+            </a>
+            <a
+                href="https://www.igi-global.com/chapter/the-impact-of-flexible-work-policies-on-employee-well-being-and-retention-in-modern-organizations/377941"
+                class="text-green-600 font-semibold hover:text-pink-700"
+            >
+                Read Full Story <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+                <div class="story-card bg-white rounded-xl shadow-md p-8 relative">
+            <a href="https://time.com/5947561/pinterest-gender-discrimination-racism/" target="_blank" rel="noopener noreferrer"></a>
+                Janice MinMarch 22, 2021. Pinterest and the Subtle Poison of Sexism and Racism in Silicon Valley.
+            </a>
+            <a
+                href="https://time.com/5947561/pinterest-gender-discrimination-racism/"
+                class="text-green-600 font-semibold hover:text-pink-700"
+            >
+                Read Full Story <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+                <div class="story-card bg-white rounded-xl shadow-md p-8 relative">
+            <a href="https://www.veremark.com/blog/employment-laws-in-the-philippines-a-guide-for-employers" target="_blank" rel="noopener noreferrer"></a>
+                Lorraine Bunag, Apr 10. Employment Laws in the Philippines: A Guide for Employers.
+            </a>
+            <a
+                href="https://www.veremark.com/blog/employment-laws-in-the-philippines-a-guide-for-employers"
+                class="text-green-600 font-semibold hover:text-pink-700"
+            >
+                Read Full Story <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+                <div class="story-card bg-white rounded-xl shadow-md p-8 relative">
+            <a href="https://www.nature.com/articles/s41598-023-50392-x" target="_blank" rel="noopener noreferrer"></a>
+                <!-- New reference goes here -->
+                 Pogrebna, G., Angelopoulos, S., Motsi-Omoijiade, I. et al, Sci Rep 14, 111 (2024). The impact of intersectional racial and gender biases on minority female leadership over two centuries.
+                
+            </a>
+            <a
+                href="https://www.nature.com/articles/s41598-023-50392-x"
+                class="text-green-600 font-semibold hover:text-pink-700"
+            >
+                Read Full Story <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+        <div class="story-card bg-white rounded-xl shadow-md p-8 relative">
+            <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7867822/" target="_blank" rel="noopener noreferrer"></a>
+                <!-- New reference goes here -->
+                J Thorac Dis. 2021, Jan 13. Pompili C, Veronesi G, Novoa NM, Gomez-Hernandez MT, Sharkey AJ, Bhatti F, Opitz I. Women in thoracic surgery: European perspectives.
+            </a>
+            <a
+                href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7867822/"
+                class="text-green-600 font-semibold hover:text-pink-700"
+            >
+                Read Full Story <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+        </div>
+
+     
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12 ">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div>
+            <h3 class="text-xl font-bold mb-4">ParityPoint</h3>
+            <p class="text-gray-400">
+              Empowering workplace equity and inclusion through education and
+              action.
+            </p>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+            <ul class="space-y-2">
+              <li>
+                <a href="index.html" class="text-gray-400 hover:text-white">Home</a>
+              </li>
+              <li>
+                  <a href="topics.html" class="nav-link active">topics</a>
+              </li>
+              <li>
+                <a href="ref.txt" download class="text-gray-400 hover:text-white">references</a>
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white">Contact</a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold mb-4">Connect With Us</h3>
+            <div class="flex space-x-4">
+              <a href="#" class="text-gray-400 hover:text-white"
+                ><i class="fab fa-facebook"></i
+              ></a>
+              <a href="#" class="text-gray-400 hover:text-white"
+                ><i class="fab fa-twitter"></i
+              ></a>
+              <a href="#" class="text-gray-400 hover:text-white"
+                ><i class="fab fa-linkedin"></i
+              ></a>
+              <a href="#" class="text-gray-400 hover:text-white"
+                ><i class="fab fa-instagram"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+        <div
+          class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400"
+        >
+          <p>&copy; 2024 ParityPoint. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
